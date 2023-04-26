@@ -33,7 +33,7 @@ namespace KIT206_A3
                     "6. Invert publication order\n" +
                     "7. Filter publication by publish year\n" +
                     "8. Enter publication index display publication detail\n" +
-                    "9. "
+                    "9. Coumulative count of selected researcher"
                     );
                 userSelect = int.Parse(Console.ReadLine());
                 switch (userSelect)
@@ -88,7 +88,7 @@ namespace KIT206_A3
                         PublicationController.LoadPublicationDetails(selectPublicationIndex - 1);
                         break;
                     case 9:
-
+                        ResearcherController.CumulativeCount();
                         break;
                 }
             }

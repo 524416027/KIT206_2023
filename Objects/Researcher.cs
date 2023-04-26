@@ -30,7 +30,7 @@ namespace KIT206_A3.Objects
 
         public double CalculateTenure()
         {
-            return 0;
+            return DateTime.Now.Year - CommencedInstitution.Year;
         }
 
         public double CalculateQ1Percentage()
@@ -60,9 +60,9 @@ namespace KIT206_A3.Objects
                 "Job Title: " + JobTitle + "\n" +
                 "Commenced with institution: " + CommencedInstitution.ToString() + "\n" +
                 "Commenced current position: " + CommencedPosition.ToString() + "\n" +
-                "Tenure: " + "0?" + "\n" +
+                "Tenure: " + CalculateTenure() + "\n" +
                 "Previous positions:\n" + positions + "\n" +
-                "Publication count: " + "0?" + "\n" +
+                "Publication count: " + PublicationCount + "\n" +
                 "Supervisions: " + "0?" + "\n" +
                 "Degree: " + "x?" + "\n" +
                 "Supervisor: " + "x?"

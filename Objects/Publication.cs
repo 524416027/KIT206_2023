@@ -20,11 +20,6 @@ namespace KIT206_A3.Objects
 		public DateTime AvailabilityDate { get; set; }
 		public int Age { get; set; }
 
-		public int CompareTo(Publication comparePublications)
-		{
-			return this.Title.CompareTo(comparePublications.Title);
-		}
-
 		public string DisplayPublicationList()
 		{
 			return "Publication year: " + PublicationYear + "\tTitle: " + Title;

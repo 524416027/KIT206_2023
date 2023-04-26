@@ -10,20 +10,20 @@ using KIT206_A3.Controllers;
 
 namespace KIT206_A3.Database
 {
-	class DatabaseAdaptor
-	{
+    class DatabaseAdaptor
+    {
         private string _database = "kit206";
         private string _userId = "kit206";
         private string _password = "kit206";
         private string _dataSource = "alacritas.cis.utas.edu.au";
 
-		public static void DatabaseConnect()
-		{
+        public static void DatabaseConnect()
+        {
 
-		}
+        }
 
         public static List<Researcher> FetchBasicResearcherList()
-		{
+        {
             //name, title, level for display in ResearcherList
             return null;
         }
@@ -34,16 +34,16 @@ namespace KIT206_A3.Database
             return null;
         }
 
-		public static List<Publication> FetchPublicationList(Researcher researcher)
-		{
+        public static List<Publication> FetchPublicationList(Researcher researcher)
+        {
             //basic publication name for display in PublicationList
             return null;
         }
 
         public static Publication FetchCompletePublicationDetails(Publication publication)
-		{
+        {
             return null;
-		}
+        }
 
         public static int FetchPublicationCounts(DateTime from, DateTime to)
         {
@@ -102,8 +102,6 @@ namespace KIT206_A3.Database
                         PublicationCount = researcherData.PublicationCount,
                         PublicationList = null
                     };
-                    //PublicationController.LoadPublicationList(returnResearcher);
-                    //returnResearcher.PublicationList = PublicationController.PublicationListFiltered;
                 }
             }
             return returnResearcher;
@@ -144,8 +142,8 @@ namespace KIT206_A3.Database
                 {
                     foreach (Publication pub in data.PublicationList)
                     {
-                        if(pub.PublicationYear >= startYear && pub.PublicationYear <= endYear)
-						{
+                        if (pub.PublicationYear >= startYear && pub.PublicationYear <= endYear)
+                        {
                             Publication newPub = new Publication
                             {
                                 PublicationYear = pub.PublicationYear,
@@ -185,7 +183,7 @@ namespace KIT206_A3.Database
         {
             ResearcherListData = new List<Researcher>()
             {
-                new Researcher
+                new Staff
                 {
                     Id = 1,
                     FirstName = "bill",
@@ -262,9 +260,12 @@ namespace KIT206_A3.Database
                             AvailabilityDate = DateTime.Today,
                             Age = 1
                         }
-                    }
+                    },
+                    FundingReceived = 1000,
+                    SupervisionCount = 0,
+                    Supervisees = null
                 },
-                new Researcher
+                new Student
                 {
                     Id = 2,
                     FirstName = "haowei",
@@ -298,7 +299,7 @@ namespace KIT206_A3.Database
                             Doi = "doi",
                             Title = "stitle",
                             Authors = new List<string>() { "author1", "autor2" },
-                            PublicationYear = 2020,
+                            PublicationYear = 2021,
                             Ranking = 9,
                             Type = PublicationType.Journal,
                             Cite = "cite",
@@ -340,8 +341,22 @@ namespace KIT206_A3.Database
                             Cite = "cite2",
                             AvailabilityDate = DateTime.Today,
                             Age = 1
+                        },
+                        new Publication
+                        {
+                            Doi = "doi2",
+                            Title = "atitle2",
+                            Authors = new List<string>() { "author12", "autor22" },
+                            PublicationYear = 2014,
+                            Ranking = 29,
+                            Type = PublicationType.Conference,
+                            Cite = "cite2",
+                            AvailabilityDate = DateTime.Today,
+                            Age = 1
                         }
-                    }
+                    },
+                    Degree = "phd",
+                    supervisor = null
                 }
             };
         }
