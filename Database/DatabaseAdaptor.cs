@@ -95,7 +95,6 @@ namespace KIT206_A3.Database
                         SchoolUnit = researcherData.SchoolUnit,
                         Campus = researcherData.Campus,
                         Email = researcherData.Email,
-                        JobTitle = researcherData.JobTitle,
                         CommencedInstitution = researcherData.CommencedInstitution,
                         CommencedPosition = researcherData.CommencedPosition,
                         PreviousPositions = researcherData.PreviousPositions,
@@ -172,7 +171,6 @@ namespace KIT206_A3.Database
                         publication.Type = publicationData.Type;
                         publication.Cite = publicationData.Cite;
                         publication.AvailabilityDate = publicationData.AvailabilityDate;
-                        publication.Age = publicationData.Age;
                     }
                 }
             }
@@ -193,7 +191,6 @@ namespace KIT206_A3.Database
                     SchoolUnit = "utas",
                     Campus = "newhamn",
                     Email = "test.utas.edu.au",
-                    JobTitle = "lecturer",
                     CommencedInstitution = DateTime.Today,
                     CommencedPosition = DateTime.MinValue,
                     PreviousPositions = new List<Position>()
@@ -221,8 +218,7 @@ namespace KIT206_A3.Database
                             Ranking = 9,
                             Type = PublicationType.Journal,
                             Cite = "cite",
-                            AvailabilityDate = DateTime.Today,
-                            Age = 3
+                            AvailabilityDate = DateTime.Today
                         },
                         new Publication
                         {
@@ -233,8 +229,7 @@ namespace KIT206_A3.Database
                             Ranking = 29,
                             Type = PublicationType.Conference,
                             Cite = "cite2",
-                            AvailabilityDate = DateTime.Today,
-                            Age = 1
+                            AvailabilityDate = DateTime.Today
                         },
                         new Publication
                         {
@@ -245,8 +240,7 @@ namespace KIT206_A3.Database
                             Ranking = 29,
                             Type = PublicationType.Conference,
                             Cite = "cite2",
-                            AvailabilityDate = DateTime.Today,
-                            Age = 1
+                            AvailabilityDate = DateTime.Today
                         },
                         new Publication
                         {
@@ -257,8 +251,7 @@ namespace KIT206_A3.Database
                             Ranking = 29,
                             Type = PublicationType.Conference,
                             Cite = "cite2",
-                            AvailabilityDate = DateTime.Today,
-                            Age = 1
+                            AvailabilityDate = DateTime.Today
                         }
                     },
                     FundingReceived = 1000,
@@ -275,7 +268,6 @@ namespace KIT206_A3.Database
                     SchoolUnit = "utas2",
                     Campus = "newhamn2",
                     Email = "test2.utas.edu.au",
-                    JobTitle = "student",
                     CommencedInstitution = DateTime.Today,
                     CommencedPosition = DateTime.MinValue,
                     PreviousPositions = new List<Position>()
@@ -303,8 +295,7 @@ namespace KIT206_A3.Database
                             Ranking = 9,
                             Type = PublicationType.Journal,
                             Cite = "cite",
-                            AvailabilityDate = DateTime.Today,
-                            Age = 3
+                            AvailabilityDate = DateTime.Today
                         },
                         new Publication
                         {
@@ -315,8 +306,7 @@ namespace KIT206_A3.Database
                             Ranking = 29,
                             Type = PublicationType.Conference,
                             Cite = "cite2",
-                            AvailabilityDate = DateTime.Today,
-                            Age = 1
+                            AvailabilityDate = DateTime.Today
                         },
                         new Publication
                         {
@@ -327,8 +317,7 @@ namespace KIT206_A3.Database
                             Ranking = 29,
                             Type = PublicationType.Conference,
                             Cite = "cite2",
-                            AvailabilityDate = DateTime.Today,
-                            Age = 1
+                            AvailabilityDate = DateTime.Today
                         },
                         new Publication
                         {
@@ -339,8 +328,7 @@ namespace KIT206_A3.Database
                             Ranking = 29,
                             Type = PublicationType.Conference,
                             Cite = "cite2",
-                            AvailabilityDate = DateTime.Today,
-                            Age = 1
+                            AvailabilityDate = DateTime.Today
                         },
                         new Publication
                         {
@@ -351,8 +339,7 @@ namespace KIT206_A3.Database
                             Ranking = 29,
                             Type = PublicationType.Conference,
                             Cite = "cite2",
-                            AvailabilityDate = DateTime.Today,
-                            Age = 1
+                            AvailabilityDate = DateTime.Today
                         }
                     },
                     Degree = "phd",

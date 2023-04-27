@@ -61,6 +61,17 @@ namespace KIT206_A3.Controllers
             SelectedPublication = PublicationListFiltered[listIndex];
             SelectedPublication = DataGenerator.FetchCompletePublicationDetails(SelectedPublication);
 
+            /*
+            for(int i = 0; i < ResearcherController.SelectedResearcher.PublicationList.Count; i++)
+			{
+                if(PublicationList[i] == PublicationListFiltered[listIndex])
+				{
+                    PublicationList[i] = PublicationListFiltered[listIndex];
+                    PublicationList = ResearcherController.SelectedResearcher.PublicationList;
+                }
+			}
+            */
+            
             Console.WriteLine("====Publication Detail====");
             Console.WriteLine(SelectedPublication.DisplayPublicationDetails());
             Console.WriteLine("========");

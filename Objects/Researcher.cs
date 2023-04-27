@@ -11,7 +11,7 @@ namespace KIT206_A3.Objects
     public class Researcher
     {
         public int Id { get; set; }
-        
+
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Title { get; set; }
@@ -20,8 +20,14 @@ namespace KIT206_A3.Objects
         public string Campus { get; set; }
         public string Email { get; set; }
 
-        public string JobTitle { get; set; }
-        
+        public string JobTitle
+        {
+            get
+            {
+                return GetCurrentJob().PositionTitle;
+            }
+        }
+
         public DateTime CommencedInstitution { get; set; }
         public DateTime CommencedPosition { get; set; }
         public List<Position> PreviousPositions { get; set; }
@@ -38,9 +44,45 @@ namespace KIT206_A3.Objects
             return 0;
         }
 
+        //get earliest
+        public Position GetEarliestJob()
+        {
+            DateTime ealiestTime = DateTime.Now;
+            Position ealiestPos = new Position();
+            foreach (Position pos in PreviousPositions)
+            {
+                //>1: ealiestTime later than pos.start
+                int compareTime = DateTime.Compare(ealiestTime, pos.startDate);
+                if (compareTime > 1)
+                {
+                    ealiestTime = pos.startDate;
+                    ealiestPos = pos;
+                }
+            }
+            return ealiestPos;
+        }
+
+        //get current
+        public Position GetCurrentJob()
+        {
+            Position currentJob = new Position();
+            foreach (Position pos in PreviousPositions)
+            {
+                //>1: now later than start, <=1: now ealier than end
+                int start = DateTime.Compare(DateTime.Now, pos.startDate);
+                int end = DateTime.Compare(DateTime.Now, pos.endDate);
+                if (start > 1 && end <= 1)
+                {
+                    currentJob = pos;
+                }
+            }
+
+            return currentJob;
+        }
+
         /* fake data test */
         public string DisplayResearcherDetails()
-		{
+        {
             string positions = "";
             foreach (Position item in PreviousPositions)
             {
@@ -67,7 +109,7 @@ namespace KIT206_A3.Objects
                 "Degree: " + "x?" + "\n" +
                 "Supervisor: " + "x?"
                 ;
-		}
+        }
 
         public override string ToString()
         {
@@ -76,31 +118,31 @@ namespace KIT206_A3.Objects
             {
                 positions +=
                     "\tPositionTitle: " + item.PositionTitle + "\n" +
-					"\tStartDate: " + item.startDate.ToString() + "\n" +
-					"\tEndDate: " + item.endDate.ToString() + "\n" +
-					"\t====\n";
+                    "\tStartDate: " + item.startDate.ToString() + "\n" +
+                    "\tEndDate: " + item.endDate.ToString() + "\n" +
+                    "\t====\n";
             }
 
             string publications = "";
-			foreach (Publication item in PublicationList)
-			{
+            foreach (Publication item in PublicationList)
+            {
                 string authors = "";
                 foreach (string author in item.Authors)
-				{
+                {
                     authors += ", " + author;
                 }
 
                 publications +=
                     "\tDoi: " + item.Doi + "\n" +
-					"\tTitle: " + item.Title + "\n" +
-					"\tAuthor: " + authors + "\n" +
-					"\tPublicationYear: " + item.PublicationYear + "\n" +
-					"\tRanking: " + item.Ranking + "\n" +
-					"\tType: " + item.Type.ToString() + "\n" +
-					"\tCite: " + item.Cite + "\n" +
+                    "\tTitle: " + item.Title + "\n" +
+                    "\tAuthor: " + authors + "\n" +
+                    "\tPublicationYear: " + item.PublicationYear + "\n" +
+                    "\tRanking: " + item.Ranking + "\n" +
+                    "\tType: " + item.Type.ToString() + "\n" +
+                    "\tCite: " + item.Cite + "\n" +
                     "\tAvailability date: " + item.AvailabilityDate.ToString() + "\n" +
-					"\tAge: " + item.Age + "\n" +
-					"\t====\n";
+                    "\tAge: " + item.Age + "\n" +
+                    "\t====\n";
             }
 
             return
@@ -118,7 +160,7 @@ namespace KIT206_A3.Objects
                 "PreviousPositions:\n" + positions + "\n" +
                 "PublicationCount: " + PublicationCount + "\n" +
                 "PublicationList: " + publications + "\n" +
-				"========";
+                "========";
         }
     }
 }

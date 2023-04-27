@@ -18,7 +18,18 @@ namespace KIT206_A3.Objects
 		public PublicationType Type { get; set; }
 		public string Cite { get; set; }
 		public DateTime AvailabilityDate { get; set; }
-		public int Age { get; set; }
+		public int Age
+		{
+			get
+			{
+				return GetAge();
+			}
+		}
+
+		public int GetAge()
+		{
+			return DateTime.Now.Year - PublicationYear;
+		}
 
 		public string DisplayPublicationList()
 		{
