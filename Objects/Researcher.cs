@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,24 +7,26 @@ using System.Threading.Tasks;
 namespace KIT206_A3.Objects
 {
     public enum EmplymentLevel { Student, A, B, C, D, E, EnumCount }
+    public enum ResearcherType { Staff, Student, EnumCount }
+    public enum Campus { Hobart, Launceston, CradleCoast, EnumCount }
 
     public class Researcher
     {
         public int Id { get; set; }
-
+        public ResearcherType Type { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Title { get; set; }
         public EmplymentLevel Level { get; set; }
         public string SchoolUnit { get; set; }
-        public string Campus { get; set; }
+        public Campus Campus { get; set; }
         public string Email { get; set; }
-
+        public string PhotoURL { get; set; }
         public string JobTitle
         {
             get
             {
-                return GetCurrentJob().PositionTitle;
+                return GetCurrentJob().PositionLevel.ToString();
             }
         }
 
@@ -41,6 +43,7 @@ namespace KIT206_A3.Objects
 
         public double CalculateQ1Percentage()
         {
+            //number of publication published in the year / quarter 1 publications * 100
             return 0;
         }
 
@@ -52,10 +55,10 @@ namespace KIT206_A3.Objects
             foreach (Position pos in PreviousPositions)
             {
                 //>1: ealiestTime later than pos.start
-                int compareTime = DateTime.Compare(ealiestTime, pos.startDate);
+                int compareTime = DateTime.Compare(ealiestTime, pos.StartDate);
                 if (compareTime > 1)
                 {
-                    ealiestTime = pos.startDate;
+                    ealiestTime = pos.StartDate;
                     ealiestPos = pos;
                 }
             }
@@ -69,8 +72,8 @@ namespace KIT206_A3.Objects
             foreach (Position pos in PreviousPositions)
             {
                 //>1: now later than start, <=1: now ealier than end
-                int start = DateTime.Compare(DateTime.Now, pos.startDate);
-                int end = DateTime.Compare(DateTime.Now, pos.endDate);
+                int start = DateTime.Compare(DateTime.Now, pos.StartDate);
+                int end = DateTime.Compare(DateTime.Now, pos.EndDate);
                 if (start > 1 && end <= 1)
                 {
                     currentJob = pos;
@@ -87,9 +90,9 @@ namespace KIT206_A3.Objects
             foreach (Position item in PreviousPositions)
             {
                 positions +=
-                    "\tPositionTitle: " + item.PositionTitle + "\n" +
-                    "\tStartDate: " + item.startDate.ToString() + "\n" +
-                    "\tEndDate: " + item.endDate.ToString() + "\n" +
+                    "\tPositionTitle: " + item.PositionLevel.ToString() + "\n" +
+                    "\tStartDate: " + item.StartDate.ToString() + "\n" +
+                    "\tEndDate: " + item.EndDate.ToString() + "\n" +
                     "\t====\n";
             }
 
@@ -97,7 +100,7 @@ namespace KIT206_A3.Objects
                 "Name: " + FirstName + " " + LastName + "\n" +
                 "Title: " + Title + "\n" +
                 "School/Unit: " + SchoolUnit + "\n" +
-                "Campus: " + Campus + "\n" +
+                "Campus: " + Campus.ToString() + "\n" +
                 "Email: " + Email + "\n" +
                 "Job Title: " + JobTitle + "\n" +
                 "Commenced with institution: " + CommencedInstitution.ToString() + "\n" +
@@ -117,9 +120,9 @@ namespace KIT206_A3.Objects
             foreach (Position item in PreviousPositions)
             {
                 positions +=
-                    "\tPositionTitle: " + item.PositionTitle + "\n" +
-                    "\tStartDate: " + item.startDate.ToString() + "\n" +
-                    "\tEndDate: " + item.endDate.ToString() + "\n" +
+                    "\tPositionTitle: " + item.PositionLevel.ToString() + "\n" +
+                    "\tStartDate: " + item.StartDate.ToString() + "\n" +
+                    "\tEndDate: " + item.EndDate.ToString() + "\n" +
                     "\t====\n";
             }
 

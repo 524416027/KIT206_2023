@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,21 +27,18 @@ namespace KIT206_A3.Controllers
 
         public static void LoadResearcherList()
         {
-            //ResearcherList = DatabaseAdaptor.FetchBasicResearcherList();
-
-            /* fake data test */
-            ResearcherList = DataGenerator.FetchBasicResearcherList();
-
+            ResearcherList = DatabaseAdaptor.FetchBasicResearcherList();
             ResearcherListFiltered = ResearcherList;
 
+            //test display
             DisplayResearcherList();
         }
 
         public static void LoadResearcherDetail(int researcherId)
         {
-            //SelectedResearcher = DatabaseAdaptor.FetchCompleteResearcherDetails(researcherId);
+            SelectedResearcher = DatabaseAdaptor.FetchCompleteResearcherDetails(researcherId);
 
-            /* fake data test */
+            /* fake data test 
             SelectedResearcher = DataGenerator.FetchCompleteResearcherDetails(researcherId);
             PublicationController.LoadPublicationList(SelectedResearcher);
             SelectedResearcher.PublicationCount = SelectedResearcher.PublicationList.Count;
@@ -54,7 +51,9 @@ namespace KIT206_A3.Controllers
                     i = ResearcherList.Count;
                 }
             }
+            */
 
+            //test display
             Console.WriteLine("====Researcher Detail====");
             Console.WriteLine(SelectedResearcher.DisplayResearcherDetails());
             Console.WriteLine("========");

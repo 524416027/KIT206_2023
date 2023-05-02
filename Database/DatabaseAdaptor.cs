@@ -12,26 +12,179 @@ namespace KIT206_A3.Database
 {
     class DatabaseAdaptor
     {
-        private string _database = "kit206";
-        private string _userId = "kit206";
-        private string _password = "kit206";
-        private string _dataSource = "alacritas.cis.utas.edu.au";
+        private static MySqlConnection _conn = null;
 
-        public static void DatabaseConnect()
+        private static string _database = "kit206";
+        private static string _userId = "kit206";
+        private static string _password = "kit206";
+        private static string _dataSource = "alacritas.cis.utas.edu.au";
+
+        public static T ParseEnum<T>(string value)
         {
+            return (T)Enum.Parse(typeof(T), value);
+        }
 
+        public static MySqlConnection GetConnection()
+        {
+            if (_conn == null)
+            {
+                string conenctionString = String.Format("Database={0};Data Source={1};User Id={2};Password={3}", _database, _dataSource, _userId, _password);
+                _conn = new MySqlConnection(conenctionString);
+            }
+            return _conn;
         }
 
         public static List<Researcher> FetchBasicResearcherList()
         {
             //name, title, level for display in ResearcherList
-            return null;
+            List<Researcher> basicResearcherList = new List<Researcher>();
+
+            MySqlConnection conn = GetConnection();
+            MySqlDataReader rdr = null;
+
+            try
+            {
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand(
+                    "SELECT id, given_name, family_name, title FROM researcher",
+                    conn
+                );
+                rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    basicResearcherList.Add(
+                        new Researcher
+                        {
+                            Id = rdr.GetInt32(0),
+                            FirstName = rdr.GetString(1),
+                            LastName = rdr.GetString(2),
+                            Title = rdr.GetString(3)
+                        }
+                    );
+                }
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine("Error connecting to database: " + e);
+            }
+            finally
+            {
+                if (rdr != null)
+                {
+                    rdr.Close();
+                }
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+            return basicResearcherList;
         }
 
         public static Researcher FetchCompleteResearcherDetails(int researcherId)
         {
             //full details for display in ResearcherDetails after select
-            return null;
+            Researcher selectedResearcher = null;
+            List<Position> positions = new List<Position>();
+
+            MySqlConnection conn = GetConnection();
+            MySqlDataReader rdr = null;
+
+            try
+            {
+                conn.Open();
+
+                /* fetch researcher details by id of selected researcher */
+                MySqlCommand cmdGetResearcher = new MySqlCommand(
+                    "SELECT * FROM researcher WHERE id = ?id",
+                    conn
+                );
+                cmdGetResearcher.Parameters.AddWithValue("id", researcherId);
+                rdr = cmdGetResearcher.ExecuteReader();
+
+                if (rdr.Read())
+                {
+                    selectedResearcher = new Researcher
+                    {
+                        Id = rdr.GetInt32(0),
+                        Type = ParseEnum<ResearcherType>(rdr.GetString(1)),
+                        FirstName = rdr.GetString(2),
+                        LastName = rdr.GetString(3),
+                        Title = rdr.GetString(4),
+                        SchoolUnit = rdr.GetString(5),
+                        Campus = ParseEnum<Campus>(rdr.GetString(6).Replace(" ", "")),
+                        Email = rdr.GetString(7),
+                        PhotoURL = rdr.GetString(8),
+                        //degree(9)
+                        //supervisor id(10)
+                        Level = ParseEnum<EmplymentLevel>(rdr.GetString(11)),
+                        CommencedInstitution = rdr.GetDateTime(12),
+                        CommencedPosition = rdr.GetDateTime(13)
+                    };
+
+                    //researcher is staff
+                    if (selectedResearcher.Type == ResearcherType.Staff)
+                    {
+
+                    }
+                    //researcher is student
+                    else
+                    {
+                        Student studentResearcher = selectedResearcher as Student;
+
+                        studentResearcher.Degree = rdr.GetString(9);
+                        studentResearcher.supervisor = rdr.GetInt32(10);
+
+                        selectedResearcher = studentResearcher;
+                    }
+                };
+                rdr.Close();
+
+                /* fetch researcher previous position list by id of selected researcher */
+                MySqlCommand cmdGetPosition = new MySqlCommand(
+                    "SELECT * FROM position WHERE id = ?id",
+                    conn
+                );
+                cmdGetPosition.Parameters.AddWithValue("id", researcherId);
+                rdr = cmdGetPosition.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    positions.Add(
+                        new Position
+                        {
+                            //use the last char to determine the emplement level enum
+                            PositionLevel = ParseEnum<EmplymentLevel>(rdr.GetString(1).Last().ToString()),
+                            StartDate = rdr.GetDateTime(2),
+                            //DateTime MinValue treat as null
+                            EndDate = !rdr.IsDBNull(3) ? rdr.GetDateTime(3) : DateTime.MinValue
+                        }
+                    );
+                }
+                rdr.Close();
+
+                selectedResearcher.PreviousPositions = positions;
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine("Error connecting to database: " + e);
+            }
+            finally
+            {
+                if (rdr != null)
+                {
+                    rdr.Close();
+                }
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+            return selectedResearcher;
         }
 
         public static List<Publication> FetchPublicationList(Researcher researcher)
@@ -179,6 +332,7 @@ namespace KIT206_A3.Database
 
         public static void Generate()
         {
+            /*
             ResearcherListData = new List<Researcher>()
             {
                 new Staff
@@ -189,7 +343,7 @@ namespace KIT206_A3.Database
                     Title = "mr",
                     Level = EmplymentLevel.B,
                     SchoolUnit = "utas",
-                    Campus = "newhamn",
+                    Campus = Campus.Hobart,
                     Email = "test.utas.edu.au",
                     CommencedInstitution = DateTime.Today,
                     CommencedPosition = DateTime.MinValue,
@@ -266,7 +420,7 @@ namespace KIT206_A3.Database
                     Title = "mr2",
                     Level = EmplymentLevel.Student,
                     SchoolUnit = "utas2",
-                    Campus = "newhamn2",
+                    Campus = Campus.Launceston,
                     Email = "test2.utas.edu.au",
                     CommencedInstitution = DateTime.Today,
                     CommencedPosition = DateTime.MinValue,
@@ -346,6 +500,7 @@ namespace KIT206_A3.Database
                     supervisor = null
                 }
             };
+            */
         }
     }
 }
