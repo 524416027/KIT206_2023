@@ -47,22 +47,45 @@ namespace KIT206_A3.Database
                 conn.Open();
 
                 MySqlCommand cmd = new MySqlCommand(
-                    "SELECT id, given_name, family_name, title FROM researcher",
+                    "SELECT id, given_name, family_name, title, level FROM researcher",
                     conn
                 );
                 rdr = cmd.ExecuteReader();
 
                 while (rdr.Read())
                 {
-                    basicResearcherList.Add(
-                        new Researcher
-                        {
-                            Id = rdr.GetInt32(0),
-                            FirstName = rdr.GetString(1),
-                            LastName = rdr.GetString(2),
-                            Title = rdr.GetString(3)
-                        }
-                    );
+                    //researcher is student if level is null in database
+                    EmplymentLevel level = !rdr.IsDBNull(4) ? ParseEnum<EmplymentLevel>(rdr.GetString(4)) : EmplymentLevel.Student;
+                    //researcher is student
+                    if (level == EmplymentLevel.Student)
+                    {
+                        basicResearcherList.Add(
+                            new Student
+                            {
+                                Id = rdr.GetInt32(0),
+                                FirstName = rdr.GetString(1),
+                                LastName = rdr.GetString(2),
+                                Title = rdr.GetString(3),
+                                Level = level
+                            }
+                        );
+                    }
+                    //researcher is staff
+                    else
+                    {
+                        basicResearcherList.Add(
+                            new Staff
+                            {
+                                Id = rdr.GetInt32(0),
+                                FirstName = rdr.GetString(1),
+                                LastName = rdr.GetString(2),
+                                Title = rdr.GetString(3),
+                                Level = level
+                            }
+                        );
+                    }
+
+
                 }
             }
             catch (MySqlException e)
@@ -84,7 +107,7 @@ namespace KIT206_A3.Database
             return basicResearcherList;
         }
 
-        public static Researcher FetchCompleteResearcherDetails(int researcherId)
+        public static Researcher FetchFullResearcherDetails(int researcherId)
         {
             //full details for display in ResearcherDetails after select
             Researcher selectedResearcher = null;
@@ -107,39 +130,40 @@ namespace KIT206_A3.Database
 
                 if (rdr.Read())
                 {
-                    selectedResearcher = new Researcher
-                    {
-                        Id = rdr.GetInt32(0),
-                        Type = ParseEnum<ResearcherType>(rdr.GetString(1)),
-                        FirstName = rdr.GetString(2),
-                        LastName = rdr.GetString(3),
-                        Title = rdr.GetString(4),
-                        SchoolUnit = rdr.GetString(5),
-                        Campus = ParseEnum<Campus>(rdr.GetString(6).Replace(" ", "")),
-                        Email = rdr.GetString(7),
-                        PhotoURL = rdr.GetString(8),
-                        //degree(9)
-                        //supervisor id(10)
-                        Level = ParseEnum<EmplymentLevel>(rdr.GetString(11)),
-                        CommencedInstitution = rdr.GetDateTime(12),
-                        CommencedPosition = rdr.GetDateTime(13)
-                    };
+                    EmplymentLevel level = !rdr.IsDBNull(11) ? ParseEnum<EmplymentLevel>(rdr.GetString(11)) : EmplymentLevel.Student;
 
-                    //researcher is staff
-                    if (selectedResearcher.Type == ResearcherType.Staff)
-                    {
-
-                    }
                     //researcher is student
+                    if (level == EmplymentLevel.Student)
+                    {
+                        selectedResearcher = new Student
+                        {
+                            Degree = rdr.GetString(9),
+                            supervisor = rdr.GetInt32(10)
+                        };
+                    }
+                    //researcher is staff
                     else
                     {
-                        Student studentResearcher = selectedResearcher as Student;
+                        selectedResearcher = new Staff
+                        {
 
-                        studentResearcher.Degree = rdr.GetString(9);
-                        studentResearcher.supervisor = rdr.GetInt32(10);
-
-                        selectedResearcher = studentResearcher;
+                        };
                     }
+
+                    selectedResearcher.Id = rdr.GetInt32(0);
+                    selectedResearcher.Type = ParseEnum<ResearcherType>(rdr.GetString(1));
+                    selectedResearcher.FirstName = rdr.GetString(2);
+                    selectedResearcher.LastName = rdr.GetString(3);
+                    selectedResearcher.Title = rdr.GetString(4);
+                    selectedResearcher.SchoolUnit = rdr.GetString(5);
+                    selectedResearcher.Campus = ParseEnum<Campus>(rdr.GetString(6).Replace(" ", ""));
+                    selectedResearcher.Email = rdr.GetString(7);
+                    selectedResearcher.PhotoURL = rdr.GetString(8);
+                    //degree(9)
+                    //supervisor id(10)
+                    selectedResearcher.Level = level;
+                    selectedResearcher.CommencedInstitution = rdr.GetDateTime(12);
+                    selectedResearcher.CommencedPosition = rdr.GetDateTime(13);
                 };
                 rdr.Close();
 
@@ -185,6 +209,16 @@ namespace KIT206_A3.Database
             }
 
             return selectedResearcher;
+        }
+
+        public static Researcher CompleteResearcherDetails(Researcher researcher)
+        {
+            //get the researcher from basic list, extract id
+            //assign full detail to list
+            researcher = FetchFullResearcherDetails(researcher.Id);
+
+            //return to SelectedResearcher
+            return researcher;
         }
 
         public static List<Publication> FetchPublicationList(Researcher researcher)

@@ -86,32 +86,58 @@ namespace KIT206_A3.Objects
         /* fake data test */
         public string DisplayResearcherDetails()
         {
-            string positions = "";
-            foreach (Position item in PreviousPositions)
+            string returnStr = "";
+            if (Level == EmplymentLevel.Student)
             {
-                positions +=
-                    "\tPositionTitle: " + item.PositionLevel.ToString() + "\n" +
-                    "\tStartDate: " + item.StartDate.ToString() + "\n" +
-                    "\tEndDate: " + item.EndDate.ToString() + "\n" +
-                    "\t====\n";
+                Student student = this as Student;
+
+                Console.WriteLine(student.Degree);
+
+                returnStr =
+                    "Name: " + FirstName + " " + LastName + "\n" +
+                    "Title: " + Title + "\n" +
+                    "School/Unit: " + SchoolUnit + "\n" +
+                    "Campus: " + Campus.ToString() + "\n" +
+                    "Email: " + Email + "\n" +
+                    "Job Title: " + JobTitle + "\n" +
+                    "Commenced with institution: " + CommencedInstitution.ToString() + "\n" +
+                    "Commenced current position: " + CommencedPosition.ToString() + "\n" +
+                    "Tenure: " + CalculateTenure() + "\n" +
+                    "Publication count: " + PublicationCount + "\n" +
+                    "Supervisions: " + "0?" + "\n" +
+                    "Degree: " + student.Degree + "\n" +
+                    "Supervisor: " + "x?"
+                    ;
+            }
+            else
+            {
+                string positions = "";
+                foreach (Position item in PreviousPositions)
+                {
+                    positions +=
+                        "\tPositionTitle: " + item.PositionLevel.ToString() + "\n" +
+                        "\tStartDate: " + item.StartDate.ToString() + "\n" +
+                        "\tEndDate: " + item.EndDate.ToString() + "\n" +
+                        "\t====\n";
+                }
+
+                returnStr =
+                    "Name: " + FirstName + " " + LastName + "\n" +
+                    "Title: " + Title + "\n" +
+                    "School/Unit: " + SchoolUnit + "\n" +
+                    "Campus: " + Campus.ToString() + "\n" +
+                    "Email: " + Email + "\n" +
+                    "Job Title: " + JobTitle + "\n" +
+                    "Commenced with institution: " + CommencedInstitution.ToString() + "\n" +
+                    "Commenced current position: " + CommencedPosition.ToString() + "\n" +
+                    "Tenure: " + CalculateTenure() + "\n" +
+                    "Previous positions:\n" + positions + "\n" +
+                    "Publication count: " + PublicationCount + "\n" +
+                    "Supervisions: " + "0?"
+                    ;
             }
 
-            return
-                "Name: " + FirstName + " " + LastName + "\n" +
-                "Title: " + Title + "\n" +
-                "School/Unit: " + SchoolUnit + "\n" +
-                "Campus: " + Campus.ToString() + "\n" +
-                "Email: " + Email + "\n" +
-                "Job Title: " + JobTitle + "\n" +
-                "Commenced with institution: " + CommencedInstitution.ToString() + "\n" +
-                "Commenced current position: " + CommencedPosition.ToString() + "\n" +
-                "Tenure: " + CalculateTenure() + "\n" +
-                "Previous positions:\n" + positions + "\n" +
-                "Publication count: " + PublicationCount + "\n" +
-                "Supervisions: " + "0?" + "\n" +
-                "Degree: " + "x?" + "\n" +
-                "Supervisor: " + "x?"
-                ;
+            return returnStr;
         }
 
         public override string ToString()
