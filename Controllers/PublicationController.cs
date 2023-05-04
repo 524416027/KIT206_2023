@@ -15,51 +15,44 @@ namespace KIT206_A3.Controllers
         public static List<Publication> PublicationListFiltered { get; set; }
         public static Publication SelectedPublication { get; set; }
 
+        public static void DisplayPublicationList(List<Publication> publication)
+		{
+            Console.WriteLine("====Publication List====");
+            foreach (Publication pub in publication)
+			{
+                Console.WriteLine("\tTitle: " + pub.Title + " Year: " + pub.PublicationYear);
+            }
+            Console.WriteLine("========");
+        }
+
+        public static void DisplayPublicationDetails()
+        {
+
+        }
+
         public static void LoadPublicationList(Researcher researcher)
         {
-            /* fake data test */
-            PublicationList = DataGenerator.FetchBasicPublicationList(researcher);
-            PublicationListFiltered = PublicationList;
+            PublicationList = DatabaseAdaptor.FetchBasicPublicationDetails(researcher);
+            researcher.PublicationList = PublicationList;
+            researcher.PublicationCount = PublicationList.Count;
 
-            PublicationListFiltered.Sort(
-                delegate(Publication pub1, Publication pub2)
-                {
-                    return pub1.Title.CompareTo(pub2.Title);
-                }
-            );
-
-            researcher.PublicationList = PublicationListFiltered;
+            PublicationListFiltered = new List<Publication>(PublicationList);
         }
 
         public static void LoadPublicationList(int startYear, int endYear)
 		{
-            /* fake data test */
+            /* fake data test 
             //assume the publication list is already loaded for the selected researcher
             PublicationList = DataGenerator.FetchBasicPublicationList(ResearcherController.SelectedResearcher, startYear, endYear);
             PublicationListFiltered = PublicationList;
+            */
         }
-
-        /* fake data test */
-        public static void DisplayPublicationList()
-		{
-            Console.WriteLine("====Publication List====");
-            foreach (Publication publication in PublicationListFiltered)
-			{
-                Console.WriteLine(publication.DisplayPublicationList());
-			}
-            Console.WriteLine("========");
-        }
-
-        public static void LoadPublicationDetails(Publication publication)
-        {
-            //SelectedPublication = DatabaseAdaptor.FetchCompletePublicationDetails(publication);
-        }
-
+        
         /* fake data test */
         public static void LoadPublicationDetails(int listIndex)
         {
             SelectedPublication = PublicationListFiltered[listIndex];
-            SelectedPublication = DataGenerator.FetchCompletePublicationDetails(SelectedPublication);
+            SelectedPublication = DatabaseAdaptor.CompletePublicationDetails(SelectedPublication);
 
             /*
             for(int i = 0; i < ResearcherController.SelectedResearcher.PublicationList.Count; i++)

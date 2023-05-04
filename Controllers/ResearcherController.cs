@@ -29,8 +29,6 @@ namespace KIT206_A3.Controllers
         {
             string printStr = "";
 
-            Console.WriteLine(SelectedResearcher.GetType());
-
             //is student
             if (SelectedResearcher.Level == EmplymentLevel.Student)
             {
@@ -95,8 +93,8 @@ namespace KIT206_A3.Controllers
                     "Supervisees: " + superviseesStr
                     ;
             }
-
             Console.WriteLine(printStr);
+            PublicationController.DisplayPublicationList(SelectedResearcher.PublicationList);
         }
 
         public static void LoadResearcherList()
@@ -120,21 +118,7 @@ namespace KIT206_A3.Controllers
                 }
             }
 
-
-            /* fake data test 
-            SelectedResearcher = DataGenerator.FetchCompleteResearcherDetails(researcherId);
             PublicationController.LoadPublicationList(SelectedResearcher);
-            SelectedResearcher.PublicationCount = SelectedResearcher.PublicationList.Count;
-
-            for (int i = 0; i < ResearcherList.Count; i++)
-            {
-                if (ResearcherList[i].Id == SelectedResearcher.Id)
-                {
-                    ResearcherList[i] = SelectedResearcher;
-                    i = ResearcherList.Count;
-                }
-            }
-            */
 
             Console.WriteLine("====Researcher Detail====");
             DisplayResearcherDetails();

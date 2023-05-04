@@ -221,15 +221,88 @@ namespace KIT206_A3.Database
             return researcher;
         }
 
-        public static List<Publication> FetchPublicationList(Researcher researcher)
+        public static List<Publication> FetchBasicPublicationDetails(Researcher researcher)
         {
-            //basic publication name for display in PublicationList
-            return null;
+            List<Publication> basicPublicationList = new List<Publication>();
+
+            MySqlConnection conn = GetConnection();
+            MySqlDataReader rdr = null;
+
+            try
+            {
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand(
+                    "SELECT publication.doi, publication.title, publication.year " +
+                    "FROM publication " +
+                    "INNER JOIN researcher_publication ON publication.doi = researcher_publication.doi " +
+                    "WHERE researcher_publication.researcher_id = ?id",
+                    conn
+                );
+                cmd.Parameters.AddWithValue("id", researcher.Id);
+                rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    basicPublicationList.Add(
+                        new Publication
+                        {
+                            Doi = rdr.GetString(0),
+                            Title = rdr.GetString(1),
+                            PublicationYear = rdr.GetInt32(2)
+                        }
+                    );
+                }
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine("Error connecting to database: " + e);
+            }
+            finally
+            {
+                if (rdr != null)
+                {
+                    rdr.Close();
+                }
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+            return basicPublicationList;
         }
 
-        public static Publication FetchCompletePublicationDetails(Publication publication)
+        public static Publication CompletePublicationDetails(Publication publication)
         {
-            return null;
+            Publication selectedResearcher = null;
+
+            MySqlConnection conn = GetConnection();
+            MySqlDataReader rdr = null;
+
+            try
+            {
+                conn.Open();
+
+                
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine("Error connecting to database: " + e);
+            }
+            finally
+            {
+                if (rdr != null)
+                {
+                    rdr.Close();
+                }
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+
+            return selectedResearcher;
         }
 
         public static int FetchPublicationCounts(DateTime from, DateTime to)
