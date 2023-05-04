@@ -26,7 +26,7 @@ namespace KIT206_A3.Objects
         {
             get
             {
-                return GetCurrentJob().PositionLevel.ToString();
+                return PreviousPositions == null ? null : GetCurrentJob().PositionLevel.ToString();
             }
         }
 
@@ -83,7 +83,7 @@ namespace KIT206_A3.Objects
             return currentJob;
         }
 
-        /* fake data test */
+        /* fake data test
         public string DisplayResearcherDetails()
         {
             string returnStr = "";
@@ -191,5 +191,6 @@ namespace KIT206_A3.Objects
                 "PublicationList: " + publications + "\n" +
                 "========";
         }
+        */
     }
 }

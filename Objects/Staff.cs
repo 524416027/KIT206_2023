@@ -9,8 +9,8 @@ namespace KIT206_A3.Objects
     public class Staff : Researcher
     {
         public int FundingReceived { get; set; }
-        public int SupervisionCount { get; set; }
-        public List<Student> Supervisees { get; set; }
+        public int SupervisionCount { get { return Supervisees.Count(); } }
+        public List<Researcher> Supervisees { get; set; }
 
         public double CalculateAverage3Year()
         {

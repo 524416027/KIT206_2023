@@ -14,7 +14,7 @@ namespace KIT206_A3
     {
         public static void Main(string[] args)
         {
-            DataGenerator.Generate();
+            //DataGenerator.Generate();
 
             ResearcherController.LoadResearcherList();
 
@@ -68,7 +68,7 @@ namespace KIT206_A3
                         ResearcherController.FilterResearcher(selectLevel);
                         break;
                     case 5:
-                        //PublicationController.DisplayPublicationList();
+                        PublicationController.DisplayPublicationList();
                         break;
                     case 6:
                         //invert order

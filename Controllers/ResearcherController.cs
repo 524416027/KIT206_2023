@@ -94,7 +94,8 @@ namespace KIT206_A3.Controllers
                     ;
             }
             Console.WriteLine(printStr);
-            PublicationController.DisplayPublicationList(SelectedResearcher.PublicationList);
+            PublicationController.PublicationListFiltered = SelectedResearcher.PublicationList;
+            PublicationController.DisplayPublicationList();
         }
 
         public static void LoadResearcherList()
@@ -112,37 +113,63 @@ namespace KIT206_A3.Controllers
             {
                 if (researcherId == ResearcherList[i].Id)
                 {
-                    SelectedResearcher = DatabaseAdaptor.CompleteResearcherDetails(ResearcherList[i]);
+                    ResearcherList[i] = DatabaseAdaptor.CompleteResearcherDetails(ResearcherList[i]);
+                    PublicationController.LoadPublicationList(ResearcherList[i]);
+
+                    if (ResearcherList[i] is Staff)
+                    {
+                        LoadSuperviees(ResearcherList[i]);
+                    }
+
+                    SelectedResearcher = ResearcherList[i];
 
                     i = ResearcherList.Count;
                 }
             }
-
-            PublicationController.LoadPublicationList(SelectedResearcher);
 
             Console.WriteLine("====Researcher Detail====");
             DisplayResearcherDetails();
             Console.WriteLine("========");
         }
 
-        public static void FilterResearcher(EmplymentLevel level)
+        public static List<Researcher> LoadSuperviees(Researcher staffResearcher)
         {
-            List<Researcher> newResearchers = new List<Researcher>();
+            List<Researcher> supervisees = new List<Researcher>();
             foreach (Researcher researcher in ResearcherList)
             {
-                if (researcher.Level == level)
+                if (researcher is Student)
                 {
-                    newResearchers.Add(researcher);
+                    Student studuentResearcher = researcher as Student;
+                    if (studuentResearcher.supervisor == staffResearcher.Id)
+                    {
+                        supervisees.Add(researcher);
+                    }
                 }
             }
+            (staffResearcher as Staff).Supervisees = supervisees;
 
-            ResearcherListFiltered = newResearchers;
+            return supervisees;
+        }
 
-            DisplayResearcherList();
+        public static void FilterResearcher(EmplymentLevel level)
+        {
+            var filtered =
+                from Researcher researcher in ResearcherList
+                where researcher.Level == level
+                select researcher;
+
+            ResearcherListFiltered = new List<Researcher>(filtered);
         }
 
         public static void FilterResearcher(string name)
         {
+            var filtered =
+                from Researcher researcher in ResearcherList
+                where researcher.LastName.Contains(name) || researcher.FirstName.Contains(name)
+                select researcher;
+
+            ResearcherListFiltered = new List<Researcher>(filtered);
+            /*
             List<Researcher> newResearchers = new List<Researcher>();
             foreach (Researcher researcher in ResearcherList)
             {
@@ -155,6 +182,7 @@ namespace KIT206_A3.Controllers
             ResearcherListFiltered = newResearchers;
 
             DisplayResearcherList();
+            */
         }
 
         public static void FilterResearcher(EmplymentLevel level, string name)
