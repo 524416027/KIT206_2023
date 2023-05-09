@@ -39,12 +39,10 @@ namespace KIT206_A3.Controllers
             );
         }
 
-        /* load publication list for target researcher */
         public static List<Publication> LoadPublicationList(Researcher researcher)
         {
-            //fetch basic publication list from the database, store the original result
             PublicationList = DatabaseAdaptor.FetchBasicPublicationDetails(researcher);
-            //create filtered publication list to store organized list for display
+
             PublicationListFiltered = new List<Publication>(PublicationList);
             PublicationListFiltered.Sort(
                 delegate (Publication pub1, Publication pub2)
@@ -52,6 +50,9 @@ namespace KIT206_A3.Controllers
                     return pub1.Title.CompareTo(pub2.Title);
                 }
             );
+
+            researcher.PublicationList = new List<Publication>(PublicationListFiltered);
+            researcher.PublicationCount = PublicationList.Count;
 
             return new List<Publication>(PublicationListFiltered);
         }
@@ -73,6 +74,7 @@ namespace KIT206_A3.Controllers
             SelectedPublication = DatabaseAdaptor.CompletePublicationDetails(SelectedPublication);
             
             Console.WriteLine("====Publication Detail====");
+            //Console.WriteLine(SelectedPublication.DisplayPublicationDetails());
             DisplayPublicationDetails();
             Console.WriteLine("========");
         }

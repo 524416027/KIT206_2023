@@ -29,6 +29,7 @@ namespace KIT206_A3.Objects
                 return PreviousPositions == null ? null : GetCurrentJob().PositionLevel.ToString();
             }
         }
+
         public DateTime CommencedInstitution { get; set; }
         public DateTime CommencedPosition { get; set; }
         public List<Position> PreviousPositions { get; set; }
@@ -46,20 +47,17 @@ namespace KIT206_A3.Objects
             return 0;
         }
 
+        //get earliest
         public Position GetEarliestJob()
         {
             DateTime ealiestTime = DateTime.Now;
             Position ealiestPos = new Position();
-
-            //loop through positions from previous position
             foreach (Position pos in PreviousPositions)
             {
-                //compare to find ealierst position
+                //>1: ealiestTime later than pos.start
                 int compareTime = DateTime.Compare(ealiestTime, pos.StartDate);
-                //compare result >1: pos.start ealier than ealiestTime
                 if (compareTime > 1)
                 {
-                    //assign the new ealierst time and position
                     ealiestTime = pos.StartDate;
                     ealiestPos = pos;
                 }
@@ -67,25 +65,132 @@ namespace KIT206_A3.Objects
             return ealiestPos;
         }
 
+        //get current
         public Position GetCurrentJob()
         {
             Position currentJob = new Position();
-
-            //loop through positions from previous position
             foreach (Position pos in PreviousPositions)
             {
-                //compare to find the date that now is later than start date and stop date is later than now
+                //>1: now later than start, <=1: now ealier than end
                 int start = DateTime.Compare(DateTime.Now, pos.StartDate);
                 int end = DateTime.Compare(DateTime.Now, pos.EndDate);
-                //compare result >1: para1 later than para2
-                //compare result <=1: para1 ealier or same time than para2
                 if (start > 1 && end <= 1)
                 {
-                    //found the current job
                     currentJob = pos;
                 }
             }
+
             return currentJob;
         }
+
+        /* fake data test
+        public string DisplayResearcherDetails()
+        {
+            string returnStr = "";
+            if (Level == EmplymentLevel.Student)
+            {
+                Student student = this as Student;
+
+                Console.WriteLine(student.Degree);
+
+                returnStr =
+                    "Name: " + FirstName + " " + LastName + "\n" +
+                    "Title: " + Title + "\n" +
+                    "School/Unit: " + SchoolUnit + "\n" +
+                    "Campus: " + Campus.ToString() + "\n" +
+                    "Email: " + Email + "\n" +
+                    "Job Title: " + JobTitle + "\n" +
+                    "Commenced with institution: " + CommencedInstitution.ToString() + "\n" +
+                    "Commenced current position: " + CommencedPosition.ToString() + "\n" +
+                    "Tenure: " + CalculateTenure() + "\n" +
+                    "Publication count: " + PublicationCount + "\n" +
+                    "Supervisions: " + "0?" + "\n" +
+                    "Degree: " + student.Degree + "\n" +
+                    "Supervisor: " + "x?"
+                    ;
+            }
+            else
+            {
+                string positions = "";
+                foreach (Position item in PreviousPositions)
+                {
+                    positions +=
+                        "\tPositionTitle: " + item.PositionLevel.ToString() + "\n" +
+                        "\tStartDate: " + item.StartDate.ToString() + "\n" +
+                        "\tEndDate: " + item.EndDate.ToString() + "\n" +
+                        "\t====\n";
+                }
+
+                returnStr =
+                    "Name: " + FirstName + " " + LastName + "\n" +
+                    "Title: " + Title + "\n" +
+                    "School/Unit: " + SchoolUnit + "\n" +
+                    "Campus: " + Campus.ToString() + "\n" +
+                    "Email: " + Email + "\n" +
+                    "Job Title: " + JobTitle + "\n" +
+                    "Commenced with institution: " + CommencedInstitution.ToString() + "\n" +
+                    "Commenced current position: " + CommencedPosition.ToString() + "\n" +
+                    "Tenure: " + CalculateTenure() + "\n" +
+                    "Previous positions:\n" + positions + "\n" +
+                    "Publication count: " + PublicationCount + "\n" +
+                    "Supervisions: " + "0?"
+                    ;
+            }
+
+            return returnStr;
+        }
+
+        public override string ToString()
+        {
+            string positions = "";
+            foreach (Position item in PreviousPositions)
+            {
+                positions +=
+                    "\tPositionTitle: " + item.PositionLevel.ToString() + "\n" +
+                    "\tStartDate: " + item.StartDate.ToString() + "\n" +
+                    "\tEndDate: " + item.EndDate.ToString() + "\n" +
+                    "\t====\n";
+            }
+
+            string publications = "";
+            foreach (Publication item in PublicationList)
+            {
+                string authors = "";
+                foreach (string author in item.Authors)
+                {
+                    authors += ", " + author;
+                }
+
+                publications +=
+                    "\tDoi: " + item.Doi + "\n" +
+                    "\tTitle: " + item.Title + "\n" +
+                    "\tAuthor: " + authors + "\n" +
+                    "\tPublicationYear: " + item.PublicationYear + "\n" +
+                    "\tRanking: " + item.Ranking + "\n" +
+                    "\tType: " + item.Type.ToString() + "\n" +
+                    "\tCite: " + item.Cite + "\n" +
+                    "\tAvailability date: " + item.AvailabilityDate.ToString() + "\n" +
+                    "\tAge: " + item.Age + "\n" +
+                    "\t====\n";
+            }
+
+            return
+                "ResearcherId: " + Id + "\n" +
+                "FirstName: " + FirstName + "\n" +
+                "LstName: " + LastName + "\n" +
+                "Title: " + Title + "\n" +
+                "Level: " + Level.ToString() + "\n" +
+                "SchoolUnit: " + SchoolUnit + "\n" +
+                "Campus: " + Campus + "\n" +
+                "Email: " + Email + "\n" +
+                "JobTitle: " + JobTitle + "\n" +
+                "CommencedInstitution: " + CommencedInstitution.ToString() + "\n" +
+                "CommencedPosition: " + CommencedPosition.ToString() + "\n" +
+                "PreviousPositions:\n" + positions + "\n" +
+                "PublicationCount: " + PublicationCount + "\n" +
+                "PublicationList: " + publications + "\n" +
+                "========";
+        }
+        */
     }
 }

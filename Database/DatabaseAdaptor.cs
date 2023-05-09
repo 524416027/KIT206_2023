@@ -19,16 +19,13 @@ namespace KIT206_A3.Database
         private static string _password = "kit206";
         private static string _dataSource = "alacritas.cis.utas.edu.au";
 
-        /* parse to T type based on name string */
         public static T ParseEnum<T>(string value)
         {
             return (T)Enum.Parse(typeof(T), value);
         }
 
-        /* make connection with database */
         public static MySqlConnection GetConnection()
         {
-            //connect if not yet
             if (_conn == null)
             {
                 string conenctionString = String.Format("Database={0};Data Source={1};User Id={2};Password={3}", _database, _dataSource, _userId, _password);
@@ -37,9 +34,9 @@ namespace KIT206_A3.Database
             return _conn;
         }
 
-        /* fetch list of researcher basic information from the database */
         public static List<Researcher> FetchBasicResearcherList()
         {
+            //name, title, level for display in ResearcherList
             List<Researcher> basicResearcherList = new List<Researcher>();
 
             MySqlConnection conn = GetConnection();
@@ -49,22 +46,16 @@ namespace KIT206_A3.Database
             {
                 conn.Open();
 
-                /* select basic researcher information */
-                //given_name, family_name, title used for display
-                //level used for list filtering
-                //supervisor_id used for staff record researcher SuperviseesList
                 MySqlCommand cmd = new MySqlCommand(
                     "SELECT id, given_name, family_name, title, level, supervisor_id FROM researcher",
                     conn
                 );
                 rdr = cmd.ExecuteReader();
 
-                //for every result from the database
                 while (rdr.Read())
                 {
                     //researcher is student if level is null in database
                     EmplymentLevel level = !rdr.IsDBNull(4) ? ParseEnum<EmplymentLevel>(rdr.GetString(4)) : EmplymentLevel.Student;
-
                     //researcher is student
                     if (level == EmplymentLevel.Student)
                     {
@@ -117,12 +108,10 @@ namespace KIT206_A3.Database
             return basicResearcherList;
         }
 
-        /* fetch selected researcher full information from the database */
         public static Researcher FetchFullResearcherDetails(int researcherId)
         {
-            //researcher with full details
+            //full details for display in ResearcherDetails after select
             Researcher selectedResearcher = null;
-
             List<Position> positions = new List<Position>();
 
             MySqlConnection conn = GetConnection();
@@ -132,7 +121,7 @@ namespace KIT206_A3.Database
             {
                 conn.Open();
 
-                /* select full details of researcher by researcher id */
+                /* fetch researcher details by id of selected researcher */
                 MySqlCommand cmdGetResearcher = new MySqlCommand(
                     "SELECT * FROM researcher WHERE id = ?id",
                     conn
@@ -140,16 +129,13 @@ namespace KIT206_A3.Database
                 cmdGetResearcher.Parameters.AddWithValue("id", researcherId);
                 rdr = cmdGetResearcher.ExecuteReader();
 
-                //for the result from the database
                 if (rdr.Read())
                 {
-                    //researcher is student if level is null in database
                     EmplymentLevel level = !rdr.IsDBNull(11) ? ParseEnum<EmplymentLevel>(rdr.GetString(11)) : EmplymentLevel.Student;
 
                     //researcher is student
                     if (level == EmplymentLevel.Student)
                     {
-                        //student researcher exclusive details
                         selectedResearcher = new Student
                         {
                             Degree = rdr.GetString(9),
@@ -159,12 +145,12 @@ namespace KIT206_A3.Database
                     //researcher is staff
                     else
                     {
-                        selectedResearcher = new Staff();
+                        selectedResearcher = new Staff
+                        {
 
-                        //TODO: load funds from xml
+                        };
                     }
 
-                    /* assign general details */
                     selectedResearcher.Id = rdr.GetInt32(0);
                     selectedResearcher.Type = ParseEnum<ResearcherType>(rdr.GetString(1));
                     selectedResearcher.FirstName = rdr.GetString(2);
@@ -174,15 +160,15 @@ namespace KIT206_A3.Database
                     selectedResearcher.Campus = ParseEnum<Campus>(rdr.GetString(6).Replace(" ", ""));
                     selectedResearcher.Email = rdr.GetString(7);
                     selectedResearcher.PhotoURL = rdr.GetString(8);
-                    //degree(9)             student
-                    //supervisor id(10)     student
+                    //degree(9)
+                    //supervisor id(10)
                     selectedResearcher.Level = level;
                     selectedResearcher.CommencedInstitution = rdr.GetDateTime(12);
                     selectedResearcher.CommencedPosition = rdr.GetDateTime(13);
                 };
                 rdr.Close();
 
-                /* select previous position list of researcher by researcher id */
+                /* fetch researcher previous position list by id of selected researcher */
                 MySqlCommand cmdGetPosition = new MySqlCommand(
                     "SELECT * FROM position WHERE id = ?id",
                     conn
@@ -190,7 +176,6 @@ namespace KIT206_A3.Database
                 cmdGetPosition.Parameters.AddWithValue("id", researcherId);
                 rdr = cmdGetPosition.ExecuteReader();
 
-                //for every result from the database
                 while (rdr.Read())
                 {
                     positions.Add(
@@ -199,14 +184,13 @@ namespace KIT206_A3.Database
                             //use the last char to determine the emplement level enum
                             PositionLevel = ParseEnum<EmplymentLevel>(rdr.GetString(1).Last().ToString()),
                             StartDate = rdr.GetDateTime(2),
-                            //null from database treat as DateTime MinValue
+                            //DateTime MinValue treat as null
                             EndDate = !rdr.IsDBNull(3) ? rdr.GetDateTime(3) : DateTime.MinValue
                         }
                     );
                 }
                 rdr.Close();
 
-                //assign position to the selected researcher
                 selectedResearcher.PreviousPositions = positions;
             }
             catch (MySqlException e)
@@ -230,8 +214,12 @@ namespace KIT206_A3.Database
 
         public static Researcher CompleteResearcherDetails(Researcher researcher)
         {
-            //assign selected researcher full detail back to the researcher list
-            return FetchFullResearcherDetails(researcher.Id);
+            //get the researcher from basic list, extract id
+            //assign full detail to list
+            researcher = FetchFullResearcherDetails(researcher.Id);
+
+            //return to SelectedResearcher
+            return researcher;
         }
 
         public static List<Publication> FetchBasicPublicationDetails(Researcher researcher)

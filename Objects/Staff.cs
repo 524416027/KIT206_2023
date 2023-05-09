@@ -14,16 +14,14 @@ namespace KIT206_A3.Objects
 
         public double CalculateAverage3Year()
         {
+            //21 22 23
             int minYear = DateTime.Now.Year - 2;
             int publicationCount = 0;
 
-            //loop through to searcher all publication
             for (int i = 0; i < PublicationList.Count; i++)
             {
-                //if the year is current, current-1, current-2
                 if (PublicationList[i].PublicationYear >= minYear)
                 {
-                    //increase publication count
                     publicationCount++;
                 }
             }
@@ -34,13 +32,14 @@ namespace KIT206_A3.Objects
         public double CalculatePublicationPerformance()
         {
             int commencementYearCount = (DateTime.Now.Year - CommencedPosition.Year) + 1;
-            return (double)(PublicationCount / commencementYearCount);
+            int publicationCount = PublicationList.Count;
+            return (double)publicationCount / commencementYearCount;
         }
 
         public double CalculateFundReceivePerformance()
         {
 			int commencementYearCount = (DateTime.Now.Year - CommencedPosition.Year) + 1;
-            return (double)(FundingReceived / commencementYearCount);
+            return FundingReceived / commencementYearCount;
         }
     }
 }
