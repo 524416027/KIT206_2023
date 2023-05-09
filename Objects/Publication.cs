@@ -31,32 +31,5 @@ namespace KIT206_A3.Objects
         {
             return DateTime.Now.Year - PublicationYear;
         }
-
-        public string DisplayPublicationList()
-        {
-            return "Publication year: " + PublicationYear + "\tTitle: " + Title;
-        }
-
-        /*
-                public string DisplayPublicationDetails()
-                {
-                    string authors = "";
-                    foreach (string author in Authors)
-                    {
-                        authors += ", " + author;
-                    }
-
-                    return
-                        "DOI: " + Doi + "\n" +
-                        "Title: " + Title + "\n" +
-                        "Authors: " + authors + "\n" +
-                        "Publication year: " + PublicationYear + "\n" +
-                        "Ranking: " + Ranking + "\n" +
-                        "Type: " + Type.ToString() + "\n" +
-                        "Cite: " + Cite + "\n" +
-                        "Availability: " + AvailabilityDate.ToString() + "\n" +
-                        "Age: " + Age;
-                }
-                */
     }
 }
