@@ -23,7 +23,6 @@ namespace KIT206_A3_WPF
 		public MainWindow()
 		{
 			InitializeComponent();
-			Console.WriteLine("hello");
 		}
 	}
 }
