@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 E:\OneDrive\University Study\2023 Sem 1\KIT206_2023_Sem1_Software Design and Development\Aassignments\Assignment 3_Software Implementation\KIT206_A3_WPF\KIT206_A3_WPF\App.xaml
-2-1791677381
+3-583768784
 
-141751716484
+15560521952
 194-1967539016
-Views\MainWindow.xaml;Views\ResearcherListView.xaml;
+Views\MainWindow.xaml;Views\ResearcherDetailsView.xaml;Views\ResearcherListView.xaml;
 
-True
+False
 

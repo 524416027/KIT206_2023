@@ -59,15 +59,24 @@ namespace KIT206_A3_WPF.Views
 
 		private void OnComboBoxLevelFilterSelect(object sender, SelectionChangedEventArgs e)
 		{
-			MessageBox.Show(((sender as ComboBox).SelectedItem as TextBlock).Text);
-			_selectedLevel = ParseEnum<EmplymentLevel>(((sender as ComboBox).SelectedItem as TextBlock).Text);
+			//MessageBox.Show(((sender as ComboBox).SelectedItem as TextBlock).Text);
+			string selectText = ((sender as ComboBox).SelectedItem as TextBlock).Text;
+
+			if (selectText == "")
+			{
+				_selectedLevel = EmplymentLevel.EnumCount;
+			}
+			else
+			{
+				_selectedLevel = ParseEnum<EmplymentLevel>(selectText);
+			}
 
 			FilterResearcherList();
 		}
 
 		private void OnResearcherSelect(object sender, SelectionChangedEventArgs e)
 		{
-
+			ResearcherController.LoadResearcherDetail(((sender as ListBox).SelectedItem as Researcher).Id);
 		}
 	}
 }

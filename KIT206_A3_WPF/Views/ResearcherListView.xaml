@@ -16,17 +16,20 @@
         </ObjectDataProvider>
     </UserControl.Resources>
 
-    <Grid x:Name="researcher_list_view" HorizontalAlignment="Stretch" Margin="4,4,4,0" VerticalAlignment="Stretch">
+    <Grid x:Name="researcher_list_view" Margin="4,4,4,4">
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
+        <!-- name filter -->
         <Label Content="Name Filter:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="24" Width="76" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Margin="-4,-4,0,0"/>
-        <Label Content="Level Filter:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="24" Width="76" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Margin="-4,20,0,0"/>
         <TextBox x:Name="textBoxNameFilter" KeyUp="OnSearcherBoxNameFilterEnter" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="156" Margin="72,0,0,0" Height="20"/>
 
+        <!-- level filter -->
+        <Label Content="Level Filter:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="24" Width="76" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Margin="-4,20,0,0"/>
         <ComboBox x:Name="comboBoxLevelFilter" SelectionChanged="OnComboBoxLevelFilterSelect" HorizontalAlignment="Left" VerticalAlignment="Top" Width="128" Margin="72,24,0,0" Height="20">
+            <TextBlock Text=""/>
             <TextBlock Text="Student"/>
             <TextBlock Text="A"/>
             <TextBlock Text="B"/>
@@ -35,6 +38,7 @@
             <TextBlock Text="E"/>
         </ComboBox>
 
+        <!-- researcher list -->
         <ListBox x:Name="researcher_list" Grid.Row="1"
                  ItemsSource="{Binding Source={StaticResource researcherList}}"
                  ItemTemplate="{StaticResource researcherListTemplate}"/>

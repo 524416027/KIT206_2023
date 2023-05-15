@@ -18,6 +18,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
+        <!-- ResearcherListView -->
         <local:ResearcherListView x:Name="researcher_list_view" Grid.Row="1"/>
 
     </Grid>
