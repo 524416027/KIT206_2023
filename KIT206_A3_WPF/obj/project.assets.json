@@ -8,31 +8,23 @@
     "net5.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\sun52\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\pokha\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\OneDrive\\University Study\\2023 Sem 1\\KIT206_2023_Sem1_Software Design and Development\\Aassignments\\Assignment 3_Software Implementation\\KIT206_A3_WPF\\KIT206_A3_WPF\\KIT206_A3_WPF.csproj",
+      "projectUniqueName": "C:\\Users\\pokha\\Music\\New folder\\KIT206_2023\\KIT206_A3_WPF\\KIT206_A3_WPF.csproj",
       "projectName": "KIT206_A3_WPF",
-      "projectPath": "E:\\OneDrive\\University Study\\2023 Sem 1\\KIT206_2023_Sem1_Software Design and Development\\Aassignments\\Assignment 3_Software Implementation\\KIT206_A3_WPF\\KIT206_A3_WPF\\KIT206_A3_WPF.csproj",
-      "packagesPath": "C:\\Users\\sun52\\.nuget\\packages\\",
-      "outputPath": "E:\\OneDrive\\University Study\\2023 Sem 1\\KIT206_2023_Sem1_Software Design and Development\\Aassignments\\Assignment 3_Software Implementation\\KIT206_A3_WPF\\KIT206_A3_WPF\\obj\\",
+      "projectPath": "C:\\Users\\pokha\\Music\\New folder\\KIT206_2023\\KIT206_A3_WPF\\KIT206_A3_WPF.csproj",
+      "packagesPath": "C:\\Users\\pokha\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\pokha\\Music\\New folder\\KIT206_2023\\KIT206_A3_WPF\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\sun52\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\pokha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net5.0-windows7.0"
+        "net5.0-windows"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -59,7 +51,8 @@
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -71,7 +64,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

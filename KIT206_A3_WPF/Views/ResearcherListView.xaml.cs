@@ -1,82 +1,70 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-using KIT206_A3.Controllers;
+﻿using KIT206_A3.Controllers;
 using KIT206_A3.Objects;
+using System;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace KIT206_A3_WPF.Views
 {
-	/// <summary>
-	/// Interaction logic for ResearcherListView.xaml
-	/// </summary>
-	public partial class ResearcherListView : UserControl
-	{
-		private EmplymentLevel _selectedLevel = EmplymentLevel.EnumCount;
-		private string _selectedName = "";
+    /// <summary>
+    /// Interaction logic for ResearcherListView.xaml
+    /// </summary>
+    public partial class ResearcherListView : UserControl
+    {
+        public event EventHandler<ResearcherSelectedEventArgs> ResearcherSelected;
 
-		/* parse to T type based on name string */
-		public static T ParseEnum<T>(string value)
-		{
-			return (T)Enum.Parse(typeof(T), value);
-		}
+        private EmplymentLevel _selectedLevel = EmplymentLevel.EnumCount;
+        private string _selectedName = "";
+        public static T ParseEnum<T>(string value)
+        {
+            return (T)Enum.Parse(typeof(T), value);
+        }
 
-		public ResearcherListView()
-		{
-			InitializeComponent();
-			researcher_list.ItemsSource = ResearcherController.LoadResearcherList();
-		}
+        public ResearcherListView()
+        {
+            InitializeComponent();
+            researcher_list.ItemsSource = ResearcherController.LoadResearcherList();
+        }
 
-		private void FilterResearcherList()
-		{
-			if(_selectedLevel != EmplymentLevel.EnumCount)
-			{
-				researcher_list.ItemsSource = ResearcherController.FilterResearcher(_selectedLevel, _selectedName);
-			}
-			else
-			{
-				researcher_list.ItemsSource = ResearcherController.FilterResearcher(_selectedName);
-			}
-		}
+        private void FilterResearcherList()
+        {
+            if (_selectedLevel != EmplymentLevel.EnumCount)
+            {
+                researcher_list.ItemsSource = ResearcherController.FilterResearcher(_selectedLevel, _selectedName);
+            }
+            else
+            {
+                researcher_list.ItemsSource = ResearcherController.FilterResearcher(_selectedName);
+            }
+        }
 
-		private void OnSearcherBoxNameFilterEnter(object sender, KeyEventArgs e)
-		{
-			_selectedName = (sender as TextBox).Text;
+        private void OnSearcherBoxNameFilterEnter(object sender, KeyEventArgs e)
+        {
+            _selectedName = (sender as TextBox).Text;
 
-			FilterResearcherList();
-		}
+            FilterResearcherList();
+        }
 
-		private void OnComboBoxLevelFilterSelect(object sender, SelectionChangedEventArgs e)
-		{
-			//MessageBox.Show(((sender as ComboBox).SelectedItem as TextBlock).Text);
-			string selectText = ((sender as ComboBox).SelectedItem as TextBlock).Text;
+        private void OnComboBoxLevelFilterSelect(object sender, SelectionChangedEventArgs e)
+        {
+            string selectText = ((sender as ComboBox).SelectedItem as TextBlock).Text;
 
-			if (selectText == "")
-			{
-				_selectedLevel = EmplymentLevel.EnumCount;
-			}
-			else
-			{
-				_selectedLevel = ParseEnum<EmplymentLevel>(selectText);
-			}
+            if (selectText == "")
+            {
+                _selectedLevel = EmplymentLevel.EnumCount;
+            }
+            else
+            {
+                _selectedLevel = ParseEnum<EmplymentLevel>(selectText);
+            }
 
-			FilterResearcherList();
-		}
+            FilterResearcherList();
+        }
 
-		private void OnResearcherSelect(object sender, SelectionChangedEventArgs e)
-		{
-			ResearcherController.LoadResearcherDetail(((sender as ListBox).SelectedItem as Researcher).Id);
-		}
-	}
+        private void OnResearcherSelect(object sender, SelectionChangedEventArgs e)
+        {
+            Researcher selectedResearcher = (sender as ListBox).SelectedItem as Researcher;
+            ResearcherSelected?.Invoke(this, new ResearcherSelectedEventArgs(selectedResearcher));
+        }
+    }
 }

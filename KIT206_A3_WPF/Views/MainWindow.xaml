@@ -6,20 +6,13 @@
         xmlns:local="clr-namespace:KIT206_A3_WPF.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="540" Width="960">
-
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="32"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="240"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- ResearcherListView -->
-        <local:ResearcherListView x:Name="researcher_list_view" Grid.Row="1"/>
-
+        <local:ResearcherListView Grid.Column="0" x:Name="researcherListView"/>
+        <local:ResearcherDetailsView Grid.Column="1" x:Name="researcherDetailsView"/>
     </Grid>
 </Window>
