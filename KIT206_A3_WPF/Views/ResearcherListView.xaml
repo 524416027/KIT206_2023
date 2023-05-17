@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="KIT206_A3_WPF.Views.ResearcherListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:KIT206_A3_WPF.Views"
+             xmlns:controller="clr-namespace:KIT206_A3.Controllers"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="240">
+
+    <UserControl.Resources>
+        <controller:ResearcherController x:Key="controller"/>
+        <ObjectDataProvider x:Key="researcherList"
+            ObjectInstance="{StaticResource controller}"
+            MethodName="LoadResearcherList">
+        </ObjectDataProvider>
+    </UserControl.Resources>
+
+    <Grid x:Name="researcher_list_view" Margin="4,4,4,4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!-- name filter -->
+        <Label Content="Name Filter:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="24" Width="76" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Margin="-4,-4,0,0"/>
+        <TextBox x:Name="textBoxNameFilter" KeyUp="OnSearcherBoxNameFilterEnter" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="156" Margin="72,0,0,0" Height="20"/>
+
+        <!-- level filter -->
+        <Label Content="Level Filter:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="24" Width="76" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Margin="-4,20,0,0"/>
+        <ComboBox x:Name="comboBoxLevelFilter" SelectionChanged="OnComboBoxLevelFilterSelect" HorizontalAlignment="Left" VerticalAlignment="Top" Width="128" Margin="72,24,0,0" Height="20">
+            <TextBlock Text=""/>
+            <TextBlock Text="Student"/>
+            <TextBlock Text="A"/>
+            <TextBlock Text="B"/>
+            <TextBlock Text="C"/>
+            <TextBlock Text="D"/>
+            <TextBlock Text="E"/>
+        </ComboBox>
+
+        <!-- researcher list -->
+        <ListBox x:Name="researcher_list" Grid.Row="1"
+                 ItemsSource="{Binding Source={StaticResource researcherList}}"
+                 ItemTemplate="{StaticResource researcherListTemplate}"/>
+    </Grid>
+</UserControl>
