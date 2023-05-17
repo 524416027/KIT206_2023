@@ -40,3 +40,45 @@ D:\writings\ProgTasks\KIT206A3WPF\obj\Debug\net6.0-windows\ref\KIT206A3WPF.dll
 D:\writings\ProgTasks\KIT206A3WPF\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
 D:\writings\ProgTasks\KIT206A3WPF\obj\Debug\net6.0-windows\Views\ResearcherListView.g.cs
 D:\writings\ProgTasks\KIT206A3WPF\obj\Debug\net6.0-windows\Views\ResearcherListView.baml
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\obj\Debug\net6.0-windows\KIT206A3WPF.csproj.AssemblyReference.cache
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\obj\Debug\net6.0-windows\Views\MainWindow.g.cs
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\obj\Debug\net6.0-windows\Views\ResearcherDetailsView.g.cs
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\obj\Debug\net6.0-windows\Views\ResearcherListView.g.cs
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\obj\Debug\net6.0-windows\KIT206A3WPF_MarkupCompile.cache
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\obj\Debug\net6.0-windows\KIT206A3WPF_MarkupCompile.lref
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\obj\Debug\net6.0-windows\KIT206A3WPF.dll
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\obj\Debug\net6.0-windows\refint\KIT206A3WPF.dll
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\obj\Debug\net6.0-windows\KIT206A3WPF.pdb
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\bin\Debug\net6.0-windows\KIT206A3WPF.exe
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\bin\Debug\net6.0-windows\KIT206A3WPF.deps.json
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\bin\Debug\net6.0-windows\KIT206A3WPF.runtimeconfig.json
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\bin\Debug\net6.0-windows\KIT206A3WPF.dll
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\bin\Debug\net6.0-windows\KIT206A3WPF.pdb
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\bin\Debug\net6.0-windows\Google.Protobuf.dll
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\bin\Debug\net6.0-windows\K4os.Compression.LZ4.dll
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\bin\Debug\net6.0-windows\K4os.Compression.LZ4.Streams.dll
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\bin\Debug\net6.0-windows\K4os.Hash.xxHash.dll
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\bin\Debug\net6.0-windows\MySql.Data.dll
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\bin\Debug\net6.0-windows\System.IO.Pipelines.dll
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\bin\Debug\net6.0-windows\System.Text.Encodings.Web.dll
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\bin\Debug\net6.0-windows\System.Text.Json.dll
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\bin\Debug\net6.0-windows\runtimes\win-x64\native\comerr64.dll
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\bin\Debug\net6.0-windows\runtimes\win-x64\native\gssapi64.dll
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\bin\Debug\net6.0-windows\runtimes\win-x64\native\k5sprt64.dll
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\bin\Debug\net6.0-windows\runtimes\win-x64\native\krb5_64.dll
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\bin\Debug\net6.0-windows\runtimes\win-x64\native\krbcc64.dll
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\bin\Debug\net6.0-windows\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\obj\Debug\net6.0-windows\Views\MainWindow.baml
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\obj\Debug\net6.0-windows\Views\ResearcherDetailsView.baml
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\obj\Debug\net6.0-windows\Views\ResearcherListView.baml
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\obj\Debug\net6.0-windows\KIT206A3WPF.g.resources
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\obj\Debug\net6.0-windows\KIT206A3WPF.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\obj\Debug\net6.0-windows\KIT206A3WPF.AssemblyInfoInputs.cache
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\obj\Debug\net6.0-windows\KIT206A3WPF.AssemblyInfo.cs
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\obj\Debug\net6.0-windows\KIT206A3WPF.csproj.CoreCompileInputs.cache
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\obj\Debug\net6.0-windows\KIT206A3WPF.csproj.CopyComplete
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\obj\Debug\net6.0-windows\KIT206A3WPF.genruntimeconfig.cache
+C:\Users\pokha\Music\New folder\KIT206A3WPF__D\KIT206A3WPF\obj\Debug\net6.0-windows\ref\KIT206A3WPF.dll

@@ -28,8 +28,7 @@ namespace KIT206A3WPF.Database
             if (_conn == null)
             {
 
-                String conenctionString = "Server=localhost;Database=kit206;Uid=root;Pwd='';";
-                //string conenctionString = String.Format("Database={0};Data Source={1};User Id={2};Password={3}", _database, _dataSource, _userId, _password);
+                string conenctionString = String.Format("Database={0};Data Source={1};User Id={2};Password={3}", _database, _dataSource, _userId, _password);
                 _conn = new MySqlConnection(conenctionString);
             }
             return _conn;

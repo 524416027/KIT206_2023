@@ -86,7 +86,7 @@ namespace KIT206A3WPF.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/KIT206A3WPF;V1.0.0.0;component/views/researcherlistview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/KIT206A3WPF;component/views/researcherlistview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\ResearcherListView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
