@@ -6,9 +6,7 @@ using System.Windows.Media.Imaging;
 
 namespace KIT206_A3_WPF.Views
 {
-    /// <summary>
-    /// Interaction logic for ResearcherDetailsView.xaml
-    /// </summary>
+
     public partial class ResearcherDetailsView : UserControl
     {
         private Researcher researcher;

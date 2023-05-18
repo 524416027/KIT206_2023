@@ -6,9 +6,7 @@ using System.Windows.Input;
 
 namespace KIT206_A3_WPF.Views
 {
-    /// <summary>
-    /// Interaction logic for ResearcherListView.xaml
-    /// </summary>
+
     public partial class ResearcherListView : UserControl
     {
         public event EventHandler<ResearcherSelectedEventArgs> ResearcherSelected;
