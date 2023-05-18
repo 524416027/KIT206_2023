@@ -1,32 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\pokha\\Music\\New folder\\KIT206_2023\\KIT206_A3_WPF\\KIT206_A3_WPF.csproj": {}
+    "D:\\writings\\KIT206_2023-master_4\\KIT206_2023-master\\KIT206_A3_WPF\\KIT206_A3_WPF.csproj": {}
   },
   "projects": {
-    "C:\\Users\\pokha\\Music\\New folder\\KIT206_2023\\KIT206_A3_WPF\\KIT206_A3_WPF.csproj": {
+    "D:\\writings\\KIT206_2023-master_4\\KIT206_2023-master\\KIT206_A3_WPF\\KIT206_A3_WPF.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pokha\\Music\\New folder\\KIT206_2023\\KIT206_A3_WPF\\KIT206_A3_WPF.csproj",
+        "projectUniqueName": "D:\\writings\\KIT206_2023-master_4\\KIT206_2023-master\\KIT206_A3_WPF\\KIT206_A3_WPF.csproj",
         "projectName": "KIT206_A3_WPF",
-        "projectPath": "C:\\Users\\pokha\\Music\\New folder\\KIT206_2023\\KIT206_A3_WPF\\KIT206_A3_WPF.csproj",
-        "packagesPath": "C:\\Users\\pokha\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pokha\\Music\\New folder\\KIT206_2023\\KIT206_A3_WPF\\obj\\",
+        "projectPath": "D:\\writings\\KIT206_2023-master_4\\KIT206_2023-master\\KIT206_A3_WPF\\KIT206_A3_WPF.csproj",
+        "packagesPath": "C:\\Users\\Mtundi\\.nuget\\packages\\",
+        "outputPath": "D:\\writings\\KIT206_2023-master_4\\KIT206_2023-master\\KIT206_A3_WPF\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\pokha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Mtundi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net5.0-windows"
+          "net6.0-windows"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0-windows7.0": {
-            "targetAlias": "net5.0-windows",
+          "net6.0-windows7.0": {
+            "targetAlias": "net6.0-windows",
             "projectReferences": {}
           }
         },
@@ -37,8 +37,14 @@
         }
       },
       "frameworks": {
-        "net5.0-windows7.0": {
-          "targetAlias": "net5.0-windows",
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
+          "dependencies": {
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.33, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -58,7 +64,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

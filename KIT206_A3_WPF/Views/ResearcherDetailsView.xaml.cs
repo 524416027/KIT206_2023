@@ -1,5 +1,6 @@
 ﻿using KIT206_A3.Objects;
 using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
@@ -15,7 +16,6 @@ namespace KIT206_A3_WPF.Views
         public ResearcherDetailsView()
         {
             InitializeComponent();
-
         }
         public void UpdateResearcherDetails(Researcher researcher)
         {
@@ -30,31 +30,73 @@ namespace KIT206_A3_WPF.Views
             string uriString = researcher.PhotoURL;
 
             // Create a new Uri using the uriString
-            Uri imageUri = new Uri(uriString);
+            try
+            {
+                Uri imageUri = new Uri(uriString);
 
-            // Create a new BitmapImage
-            BitmapImage bitmapImage = new BitmapImage();
-            bitmapImage.BeginInit();
-            bitmapImage.UriSource = imageUri;
-            bitmapImage.EndInit();
+                // Create a new BitmapImage
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.UriSource = imageUri;
+                bitmapImage.EndInit();
+                imgpath.Width = 70;
+                imgpath.Height = 150;
+
+                imgpath.Source = bitmapImage;
+
+            }
+            catch (Exception)
+            {
+
+            }
+            if (researcher.SchoolUnit != null)
+            {
+                lblschoolunit.Content = researcher.SchoolUnit.ToString();
+
+            }
+            if (researcher.Email != null)
+            {
+                lblemail.Content = researcher.Email.ToString();
+
+            }
+            if (researcher.FirstName != null)
+            {
+                lblname.Content = researcher.FirstName.ToString();
+
+            }
+            if (researcher.Title != null)
+            {
+                lbljobtitle.Content = researcher.Title.ToString();
+
+            }
+            if (researcher.PublicationCount != null)
+            {
+                lblpublications.Content = researcher.PublicationCount.ToString();
+
+            }
+            if (researcher.CommencedPosition != null)
+            {
+                lblcommencedcurrentposition.Content = researcher.CommencedPosition.ToString();
+
+            }
+            if (researcher.CalculateTenure != null)
+            {
+                lbltenure.Content = researcher.CalculateTenure().ToString();
+
+            }
 
             // Assign the BitmapImage as the source of the PictureBox
-            imgpath.Width = 70;
-            imgpath.Height = 150;
 
-            imgpath.Source = bitmapImage;
-            lblschoolunit.Content = researcher.SchoolUnit.ToString();
-            lblemail.Content = researcher.Email.ToString();
-            lbljobtitle.Content = researcher.GetCurrentJob();
-            lblname.Content = researcher.FirstName.ToString();
-            lblpublications.Content = researcher.PublicationCount.ToString();
-            lblcommencedcurrentposition.Content = researcher.CommencedPosition.ToString();
-            lbltenure.Content = researcher.CalculateTenure().ToString();
 
 
             if (researcher is Staff staff)
             {
                 lblsupervisions.Content = staff.Supervisees;
+                lblcommencedwithinstitution.Content = staff.CommencedInstitution.ToString();
+                lbltenure.Content = staff.CalculateTenure();
+                //lblsupervisions.Content = staff.SupervisionCount.ToString();
+                //   lblpublications.Content = staff.PublicationCount;
+                //   lblcommencedcurrentposition.Content = staff.CommencedPosition.ToString();
                 lblcommencedwithinstitution.Content = staff.CommencedInstitution.ToString();
             }
             if (researcher is Student student)
@@ -74,10 +116,8 @@ namespace KIT206_A3_WPF.Views
             }
             else
             {
-
+                MessageBox.Show("Something wrong happened");
             }
         }
-
-
     }
 }

@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:KIT206_A3_WPF.Views"
-             mc:Ignorable="d">
+             mc:Ignorable="d" 
+             d:DesignHeight="450">
 
     <Grid Grid.Column="1" Margin="0 0 10 0">
         <Grid.RowDefinitions>
@@ -40,7 +41,7 @@
 
                 <Image Grid.Column="0" x:Name="imgpath" Stretch="Uniform" Source="/Images/placeholder.png"/>
 
-                <Grid Grid.Column="1" Margin="10 0 0 0">
+                <Grid Grid.Column="1" Margin="0 0 0 0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -193,6 +194,10 @@
 
         <!-- Border element below the second panel -->
     </Grid>
+
+
+
+
 
 
 </UserControl>

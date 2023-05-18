@@ -19,7 +19,6 @@ namespace KIT206_A3_WPF.Views
         {
             return (T)Enum.Parse(typeof(T), value);
         }
-
         public ResearcherListView()
         {
             InitializeComponent();
@@ -41,7 +40,6 @@ namespace KIT206_A3_WPF.Views
         private void OnSearcherBoxNameFilterEnter(object sender, KeyEventArgs e)
         {
             _selectedName = (sender as TextBox).Text;
-
             FilterResearcherList();
         }
 

@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:KIT206_A3_WPF.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="540" Width="960">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>

@@ -41,6 +41,7 @@
         <!-- researcher list -->
         <ListBox x:Name="researcher_list" Grid.Row="1"
                  ItemsSource="{Binding Source={StaticResource researcherList}}"
-                 ItemTemplate="{StaticResource researcherListTemplate}"/>
+                 ItemTemplate="{StaticResource researcherListTemplate}"
+                 SelectionChanged="OnResearcherSelect"/>
     </Grid>
 </UserControl>
