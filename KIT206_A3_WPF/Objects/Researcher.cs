@@ -12,6 +12,16 @@ namespace KIT206_A3.Objects
 
     public class Researcher
     {
+        public Dictionary<EmplymentLevel, string> JobTitleNames = new Dictionary<EmplymentLevel, string>()
+        {
+            { EmplymentLevel.Student, "Student" },
+            { EmplymentLevel.A, "Research Associate" },
+            { EmplymentLevel.B, "Lecturer" },
+            { EmplymentLevel.C, "Assistant Professor" },
+            { EmplymentLevel.D, "Associate Professor" },
+            { EmplymentLevel.E, "Professor" }
+        };
+
         public int Id { get; set; }
         public ResearcherType Type { get; set; }
         public string FirstName { get; set; }
@@ -26,7 +36,8 @@ namespace KIT206_A3.Objects
         {
             get
             {
-                return PreviousPositions == null ? null : GetCurrentJob().PositionLevel.ToString();
+                //return PreviousPositions == null ? null : GetCurrentJob().PositionLevel.ToString();
+                return JobTitleNames[Level];
             }
         }
         public DateTime CommencedInstitution { get; set; }

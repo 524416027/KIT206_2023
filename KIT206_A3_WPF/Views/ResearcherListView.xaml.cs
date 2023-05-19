@@ -59,8 +59,16 @@ namespace KIT206_A3_WPF.Views
 
         private void OnResearcherSelect(object sender, SelectionChangedEventArgs e)
         {
+            //selected researcher with basic details
             Researcher selectedResearcher = (sender as ListBox).SelectedItem as Researcher;
-            ResearcherSelected?.Invoke(this, new ResearcherSelectedEventArgs(selectedResearcher));
+            if(selectedResearcher != null)
+			{
+                //load full details for the selected researcher
+                ResearcherController.LoadResearcherDetail(selectedResearcher.Id);
+
+                //call back function send out the loaded selected researcher
+                ResearcherSelected?.Invoke(this, new ResearcherSelectedEventArgs(ResearcherController.SelectedResearcher));
+            }
         }
     }
 }

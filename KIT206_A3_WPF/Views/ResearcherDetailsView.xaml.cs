@@ -41,30 +41,38 @@ namespace KIT206_A3_WPF.Views
                 imgpath.Height = 150;
 
                 imgpath.Source = bitmapImage;
-
             }
             catch (Exception)
             {
 
             }
+
+            tbName.Text = researcher.FirstName + " " + researcher.LastName;
+            tbTitle.Text = researcher.Title;
+            tbSchoolUnit.Text = researcher.SchoolUnit;
+            tbCampus.Text = researcher.Campus.ToString();
+            tbEmail.Text = researcher.Email;
+            tbJobTitle.Text = researcher.JobTitle;
+
+            /*
             if (researcher.SchoolUnit != null)
             {
-                lblschoolunit.Content = researcher.SchoolUnit.ToString();
+                tbSchoolUnit.Text = researcher.SchoolUnit.ToString();
 
             }
             if (researcher.Email != null)
             {
-                lblemail.Content = researcher.Email.ToString();
+                tbEmail.Text = researcher.Email.ToString();
 
             }
             if (researcher.FirstName != null)
             {
-                lblname.Content = researcher.FirstName.ToString();
+                tbName.Text = researcher.FirstName.ToString();
 
             }
             if (researcher.Title != null)
             {
-                lbljobtitle.Content = researcher.Title.ToString();
+                tbJobTitle.Text = researcher.Title.ToString();
 
             }
             if (researcher.PublicationCount != null)
@@ -77,16 +85,17 @@ namespace KIT206_A3_WPF.Views
                 lblcommencedcurrentposition.Content = researcher.CommencedPosition.ToString();
 
             }
-            if (researcher.CalculateTenure != null)
+            if (researcher.CalculateTenure() != null)
             {
                 lbltenure.Content = researcher.CalculateTenure().ToString();
 
             }
+            */
 
             // Assign the BitmapImage as the source of the PictureBox
 
 
-
+            /*
             if (researcher is Staff staff)
             {
                 lblsupervisions.Content = staff.Supervisees;
@@ -102,10 +111,10 @@ namespace KIT206_A3_WPF.Views
                 lblsupervisor.Content = student.supervisor;
 
                 lbldegree.Content = student.Degree.ToString();
-
             }
-
+            */
         }
+
         public void DisplayResearcherDetails()
         {
             if (researcher != null)
