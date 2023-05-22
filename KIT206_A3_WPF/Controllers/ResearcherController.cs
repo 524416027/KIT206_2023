@@ -210,6 +210,22 @@ namespace KIT206_A3.Controllers
             return ResearcherListFiltered;
         }
 
+        public static string FindResearcherName(int id)
+		{
+            string name = "";
+            for(int i = 0; i < ResearcherList.Count; i++)
+			{
+                if(ResearcherList[i].Id == id)
+				{
+                    name = ResearcherList[i].FirstName + ", " + ResearcherList[i].LastName + " (" + ResearcherList[i].Title + ")";
+
+                    i = ResearcherList.Count;
+				}
+			}
+
+            return name;
+		}
+
         /* calculate cumulative count */
         public static List<(int, int)> CumulativeCount()
         {

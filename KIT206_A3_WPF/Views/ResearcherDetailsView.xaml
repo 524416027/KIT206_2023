@@ -107,25 +107,27 @@
         <!-- Third row with multiple rows -->
         <Grid Grid.Row  ="2">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            
+
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="Commenced with institution:" FontWeight="Bold"/>
-                <Label Grid.Column="1" x:Name="lblcommencedwithinstitution" Content="dd/mm/yy"/>
+                <TextBlock Grid.Column="0" Text="Commenced with institution:" FontWeight="Bold" Margin="4,0,0,0"/>
+                <TextBlock x:Name="tbCommencedWithInstitution" Grid.Column="1" Text="dd/mm/yy" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
 
             <Grid Grid.Row="1">
@@ -133,8 +135,8 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="Commenced current position" FontWeight="Bold"/>
-                <Label Grid.Column="1" x:Name="lblcommencedcurrentposition" Content="dd/mm/yy"/>
+                <TextBlock Grid.Column="0" Text="Commenced current position:" FontWeight="Bold" Margin="4,0,0,0"/>
+                <TextBlock x:Name="tbCommencedCurrentPosition" Grid.Column="1" Text="dd/mm/yy" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
 
             <Grid Grid.Row="2">
@@ -142,74 +144,67 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="Tenure" FontWeight="Bold"/>
-                <Label Grid.Column="1" x:Name="lbltenure" Content="n years"/>
+                <TextBlock Grid.Column="0" Text="Tenure:" FontWeight="Bold" Margin="4,0,0,0"/>
+                <TextBlock x:Name="tbTenure" Grid.Column="1" Text="n years" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
 
             <Grid Grid.Row="3">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <ListView x:Name="lstpositions" Grid.Column="0" ScrollViewer.VerticalScrollBarVisibility="Auto"
-                             ItemsSource="{Binding Path=Positions}">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Level" DisplayMemberBinding="{Binding Level}"/>
-                            <GridViewColumn Header="Start" DisplayMemberBinding="{Binding Start}"/>
-                            <GridViewColumn Header="End" DisplayMemberBinding="{Binding End}"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-
+                <TextBlock x:Name="tbPreviousPositionTitle" Text="Previous positions:" FontWeight="Bold" Margin="4,0,0,0"/>
             </Grid>
 
             <Grid Grid.Row="4">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="Publications" FontWeight="Bold"/>
-                <Label Grid.Column="1" x:Name="lblpublications" Content="0"/>
+                <ListView x:Name="previous_position_list" Grid.Column="0" ScrollViewer.VerticalScrollBarVisibility="Auto" Visibility="Visible">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Level" DisplayMemberBinding="{Binding PositionLevel}"/>
+                            <GridViewColumn Header="Start" DisplayMemberBinding="{Binding Path=StartDate, StringFormat='dd/MM/yyyy'}"/>
+                            <GridViewColumn Header="End" DisplayMemberBinding="{Binding Path=EndDate, StringFormat='dd/MM/yyyy'}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </Grid>
 
-            <Button Grid.Row="5" Content="Performance Details" BorderBrush="Black" BorderThickness="1" Padding="10" Margin="0,10,0,0" />
-            <Button Grid.Row="6" Content="Cumulative Count" BorderBrush="Black" BorderThickness="1" Padding="10" Margin="0,10,0,0" />
-
-
-            <Grid Grid.Row="7">
+            <Grid Grid.Row="5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="Supervisions" FontWeight="Bold"/>
-                <Label Grid.Column="1" x:Name="lblsupervisions" Content="N/A"/>
+                <TextBlock Grid.Column="0" Text="Publications:" FontWeight="Bold" Margin="4,0,0,0"/>
+                <TextBlock x:Name="tbPublicationCount" Grid.Column="1" Text="publication count" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
 
-            <Button Grid.Row="8" Content="Supervision Details" BorderBrush="Black" BorderThickness="1" Padding="10" Margin="0,10,0,0" />
+            <Button Grid.Row="6" Content="Performance Details" BorderBrush="Black" BorderThickness="1" Padding="4" HorizontalAlignment="Left" Margin="0,4,0,0" Width="128" />
+            <Button Grid.Row="7" Content="Cumulative Count" BorderBrush="Black" BorderThickness="1" Padding="4" HorizontalAlignment="Left" Margin="0,4,0,0" Width="128" />
 
-            <Grid Grid.Row="9">
+            <Grid Grid.Row="8">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="Degree" FontWeight="Bold"/>
-                <Label Grid.Column="1" x:Name="lbldegree" Content="N/A"/>
+                <TextBlock x:Name="tbSuperviseeCountTitle" Grid.Column="0" Text="Supervisions:" FontWeight="Bold" Margin="4,0,0,0"/>
+                <TextBlock x:Name="tbSuperviseeCount" Grid.Column="1" Text="superviee count" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
 
-            <Grid Grid.Row="9" Margin="0,45,0,-45">
+            <Button x:Name="btnSupervisionDetail" Grid.Row="9" Content="Supervision Details" BorderBrush="Black" BorderThickness="1" Padding="4" HorizontalAlignment="Left" Margin="0,4,0,0" Width="128" />
+
+            <Grid Grid.Row="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="Supervisor" FontWeight="Bold"/>
-                <Label Grid.Column="1" x:Name="lblsupervisor" Content="N/A"/>
+                <TextBlock x:Name="tbDegreeTitle" Grid.Column="0" Text="Degree:" FontWeight="Bold" Margin="4,0,0,0"/>
+                <TextBlock x:Name="tbDegree" Grid.Column="1" Text="superviee count" FontWeight="Normal" Margin="4,0,0,0"/>
+            </Grid>
+
+            <Grid Grid.Row="11">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="tbSupervisorTitle" Grid.Column="0" Text="Supervisor:" FontWeight="Bold" Margin="4,0,0,0"/>
+                <TextBlock x:Name="tbSupervisor" Grid.Column="1" Text="supervisor id" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
         </Grid>
-
-
-        <!-- Border element below the second panel -->
     </Grid>
 
 

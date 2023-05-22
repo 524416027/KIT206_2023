@@ -4,6 +4,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
+using KIT206_A3.Controllers;
+
 namespace KIT206_A3_WPF.Views
 {
 
@@ -54,47 +56,61 @@ namespace KIT206_A3_WPF.Views
             tbEmail.Text = researcher.Email;
             tbJobTitle.Text = researcher.JobTitle;
 
-            /*
-            if (researcher.SchoolUnit != null)
-            {
-                tbSchoolUnit.Text = researcher.SchoolUnit.ToString();
+            tbCommencedWithInstitution.Text = researcher.CommencedInstitution.ToString("dd'/'MM'/'yyyy");
+            tbCommencedCurrentPosition.Text = researcher.CommencedPosition.ToString("dd'/'MM'/'yyyy");
 
+            tbTenure.Text = researcher.CalculateTenure().ToString();
+
+            
+
+            tbPublicationCount.Text = researcher.PublicationCount.ToString();
+
+            if(researcher is Staff staff)
+			{
+                //enable previous positions section
+                tbPreviousPositionTitle.Visibility = Visibility.Visible;
+                previous_position_list.Visibility = Visibility.Visible;
+                //assign item source of previous positions
+                previous_position_list.ItemsSource = researcher.PreviousPositions;
+
+                //enable supervision section
+                tbSuperviseeCountTitle.Visibility = Visibility.Visible;
+                tbSuperviseeCount.Visibility = Visibility.Visible;
+                tbSuperviseeCount.Text = staff.SupervisionCount.ToString();
+                btnSupervisionDetail.Visibility = Visibility.Visible;
+
+                //disable degree and supervisor section
+                tbDegreeTitle.Visibility = Visibility.Collapsed;
+                tbDegree.Visibility = Visibility.Collapsed;
+                tbSupervisorTitle.Visibility = Visibility.Collapsed;
+                tbSupervisor.Visibility = Visibility.Collapsed;
             }
-            if (researcher.Email != null)
-            {
-                tbEmail.Text = researcher.Email.ToString();
+            else
+			{
+                //disable previous positions section
+                tbPreviousPositionTitle.Visibility = Visibility.Collapsed;
+                previous_position_list.Visibility = Visibility.Collapsed;
 
-            }
-            if (researcher.FirstName != null)
-            {
-                tbName.Text = researcher.FirstName.ToString();
+                //disabble supervision section
+                tbSuperviseeCountTitle.Visibility = Visibility.Collapsed;
+                tbSuperviseeCount.Visibility = Visibility.Collapsed;
+                btnSupervisionDetail.Visibility = Visibility.Collapsed;
 
-            }
-            if (researcher.Title != null)
-            {
-                tbJobTitle.Text = researcher.Title.ToString();
+                if (researcher is Student student)
+				{
+                    //enable degree section
+                    tbDegreeTitle.Visibility = Visibility.Visible;
+                    tbDegree.Visibility = Visibility.Visible;
+                    //assign student degree
+                    tbDegree.Text = student.Degree;
 
-            }
-            if (researcher.PublicationCount != null)
-            {
-                lblpublications.Content = researcher.PublicationCount.ToString();
-
-            }
-            if (researcher.CommencedPosition != null)
-            {
-                lblcommencedcurrentposition.Content = researcher.CommencedPosition.ToString();
-
-            }
-            if (researcher.CalculateTenure() != null)
-            {
-                lbltenure.Content = researcher.CalculateTenure().ToString();
-
-            }
-            */
-
-            // Assign the BitmapImage as the source of the PictureBox
-
-
+                    //enable supervisor section
+                    tbSupervisorTitle.Visibility = Visibility.Visible;
+                    tbSupervisor.Visibility = Visibility.Visible;
+                    //assign supervisor name
+                    tbSupervisor.Text = ResearcherController.FindResearcherName(student.supervisor);
+				}
+			}
             /*
             if (researcher is Staff staff)
             {
