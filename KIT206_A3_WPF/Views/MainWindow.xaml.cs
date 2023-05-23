@@ -12,15 +12,24 @@ namespace KIT206_A3_WPF
         public MainWindow()
         {
             InitializeComponent();
+
             researcherListView.ResearcherSelected += OnResearcherSelected;
+
             researcherDetailsView.Visibility = Visibility.Hidden;
+            publicationListView.Visibility = Visibility.Hidden;
         }
+
         private void OnResearcherSelected(object sender, ResearcherSelectedEventArgs e)
         {
             Researcher researcher = e.SelectedResearcher;
+
             researcherDetailsView.UpdateResearcherDetails(researcher: researcher);
             researcherDetailsView.DisplayResearcherDetails();
+
+            publicationListView.UpdatePublicationList(researcher);
+
             researcherDetailsView.Visibility = Visibility.Visible;
+            publicationListView.Visibility = Visibility.Visible;
         }
     }
 }

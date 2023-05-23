@@ -156,9 +156,9 @@
                 <ListView x:Name="previous_position_list" Grid.Column="0" ScrollViewer.VerticalScrollBarVisibility="Auto" Visibility="Visible">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Level" DisplayMemberBinding="{Binding PositionLevel}"/>
-                            <GridViewColumn Header="Start" DisplayMemberBinding="{Binding Path=StartDate, StringFormat='dd/MM/yyyy'}"/>
-                            <GridViewColumn Header="End" DisplayMemberBinding="{Binding Path=EndDate, StringFormat='dd/MM/yyyy'}"/>
+                            <GridViewColumn Width="Auto" Header="Level" DisplayMemberBinding="{Binding PositionLevel}"/>
+                            <GridViewColumn Width="Auto" Header="Start" DisplayMemberBinding="{Binding Path=StartDate, StringFormat='dd/MM/yyyy'}"/>
+                            <GridViewColumn Width="Auto" Header="End" DisplayMemberBinding="{Binding Path=EndDate, StringFormat='dd/MM/yyyy'}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>

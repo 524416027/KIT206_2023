@@ -9,11 +9,13 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition MinWidth="240" Width="2*" MaxWidth="240"/>
+            <ColumnDefinition MinWidth="320" Width="3*" MaxWidth="320"/>
+            <ColumnDefinition MinWidth="320" Width="3*"/>
         </Grid.ColumnDefinitions>
 
         <local:ResearcherListView Grid.Column="0" x:Name="researcherListView"/>
         <local:ResearcherDetailsView Grid.Column="1" x:Name="researcherDetailsView"/>
+        <local:PublicationListView Grid.Column="2" x:Name="publicationListView"/>
     </Grid>
 </Window>

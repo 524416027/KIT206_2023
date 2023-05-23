@@ -56,7 +56,7 @@ namespace KIT206_A3.Controllers
             return new List<Publication>(PublicationListFiltered);
         }
 
-        public static void LoadPublicationList(int startYear, int endYear)
+        public static List<Publication> LoadPublicationList(int startYear, int endYear)
 		{
             var filtered =
                 from Publication pub in PublicationList
@@ -64,6 +64,14 @@ namespace KIT206_A3.Controllers
                 select pub;
 
             PublicationListFiltered = new List<Publication>(filtered);
+            PublicationListFiltered.Sort(
+                delegate (Publication pub1, Publication pub2)
+                {
+                    return pub1.Title.CompareTo(pub2.Title);
+                }
+            );
+
+            return new List<Publication>(PublicationListFiltered);
         }
         
         /* fake data test */
@@ -77,9 +85,11 @@ namespace KIT206_A3.Controllers
             Console.WriteLine("========");
         }
 
-        public static void InvertPublicationList()
+        public static List<Publication> InvertPublicationList()
         {
             PublicationListFiltered.Reverse();
+
+            return new List<Publication>(PublicationListFiltered);
         }
     }
 }

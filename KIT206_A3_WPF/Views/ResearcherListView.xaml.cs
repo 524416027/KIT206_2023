@@ -35,13 +35,13 @@ namespace KIT206_A3_WPF.Views
             }
         }
 
-        private void OnSearcherBoxNameFilterEnter(object sender, KeyEventArgs e)
+        private void OnNameFilterEnter(object sender, KeyEventArgs e)
         {
             _selectedName = (sender as TextBox).Text;
             FilterResearcherList();
         }
 
-        private void OnComboBoxLevelFilterSelect(object sender, SelectionChangedEventArgs e)
+        private void OnLevelFilterSelect(object sender, SelectionChangedEventArgs e)
         {
             string selectText = ((sender as ComboBox).SelectedItem as TextBlock).Text;
 

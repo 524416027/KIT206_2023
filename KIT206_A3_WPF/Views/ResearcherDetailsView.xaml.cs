@@ -111,24 +111,6 @@ namespace KIT206_A3_WPF.Views
                     tbSupervisor.Text = ResearcherController.FindResearcherName(student.supervisor);
 				}
 			}
-            /*
-            if (researcher is Staff staff)
-            {
-                lblsupervisions.Content = staff.Supervisees;
-                lblcommencedwithinstitution.Content = staff.CommencedInstitution.ToString();
-                lbltenure.Content = staff.CalculateTenure();
-                //lblsupervisions.Content = staff.SupervisionCount.ToString();
-                //   lblpublications.Content = staff.PublicationCount;
-                //   lblcommencedcurrentposition.Content = staff.CommencedPosition.ToString();
-                lblcommencedwithinstitution.Content = staff.CommencedInstitution.ToString();
-            }
-            if (researcher is Student student)
-            {
-                lblsupervisor.Content = student.supervisor;
-
-                lbldegree.Content = student.Degree.ToString();
-            }
-            */
         }
 
         public void DisplayResearcherDetails()
