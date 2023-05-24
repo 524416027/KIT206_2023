@@ -17,11 +17,12 @@ using KIT206_A3.Objects;
 
 namespace KIT206_A3_WPF.Views
 {
-	/// <summary>
-	/// Interaction logic for PublicationListView.xaml
-	/// </summary>
 	public partial class PublicationListView : UserControl
 	{
+		//callback function when publictaion is selected
+		public delegate void OnPublicationSelectDelegate(Publication selectedPublication);
+		public event OnPublicationSelectDelegate OnPublicationSelectListeners = null;
+
 		private int _startYear = 0;
 		private int _endYear = DateTime.Now.Year;
 
@@ -62,7 +63,16 @@ namespace KIT206_A3_WPF.Views
 
 		private void OnPublicationSelect(object sender, SelectionChangedEventArgs e)
 		{
-			
+			//selected publication with basic details
+			Publication selectedPublication = (sender as ListBox).SelectedItem as Publication;
+
+			if(selectedPublication != null)
+			{
+				PublicationController.LoadPublicationDetails(selectedPublication.Doi);
+			}
+
+			//send out selected pubilication to all listener functions
+			OnPublicationSelectListeners(PublicationController.SelectedPublication);
 		}
 	}
 }

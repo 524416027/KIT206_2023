@@ -75,14 +75,15 @@ namespace KIT206_A3.Controllers
         }
         
         /* fake data test */
-        public static void LoadPublicationDetails(int listIndex)
+        public static void LoadPublicationDetails(string doi)
         {
-            SelectedPublication = PublicationListFiltered[listIndex];
-            SelectedPublication = DatabaseAdaptor.CompletePublicationDetails(SelectedPublication);
-            
-            Console.WriteLine("====Publication Detail====");
-            DisplayPublicationDetails();
-            Console.WriteLine("========");
+            for(int i = 0; i < PublicationList.Count; i++)
+			{
+                if(PublicationList[i].Doi == doi)
+				{
+                    SelectedPublication = DatabaseAdaptor.CompletePublicationDetails(PublicationList[i]);
+                }
+			}
         }
 
         public static List<Publication> InvertPublicationList()

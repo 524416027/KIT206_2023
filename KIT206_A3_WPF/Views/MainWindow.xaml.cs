@@ -14,6 +14,7 @@ namespace KIT206_A3_WPF
             InitializeComponent();
 
             researcherListView.ResearcherSelected += OnResearcherSelected;
+            publicationListView.OnPublicationSelectListeners += OnPublicationSelected;
 
             researcherDetailsView.Visibility = Visibility.Hidden;
             publicationListView.Visibility = Visibility.Hidden;
@@ -30,6 +31,13 @@ namespace KIT206_A3_WPF
 
             researcherDetailsView.Visibility = Visibility.Visible;
             publicationListView.Visibility = Visibility.Visible;
+        }
+
+        public void OnPublicationSelected(Publication selectedPublication)
+		{
+            PublicationDetailsView publicationDetailsWindow = new PublicationDetailsView();
+            publicationDetailsWindow.DisplayResearcherDetails(selectedPublication);
+            publicationDetailsWindow.Show();
         }
     }
 }

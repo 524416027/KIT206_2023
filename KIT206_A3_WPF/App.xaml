@@ -17,5 +17,31 @@
                     </TextBlock.Text>
                 </TextBlock>
         </DataTemplate>
+
+        <!-- researcher previous position -->
+            <DataTemplate x:Key="previousPositionsTemplate">
+            <TextBlock HorizontalAlignment="Stretch" Grid.Row="1" FontSize="14" Margin="4,4,0,0" VerticalAlignment="Center">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat=" {0}, {1}, {2}">
+                        <Binding Path="PositionLevel"/>
+                        <Binding Path="StartDate"/>
+                        <Binding Path="EndDate"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+        </DataTemplate>
+
+        <!-- publication list -->
+        <DataTemplate x:Key="publicationListTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="48"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Grid.Column="0" Text="{Binding PublicationYear}"/>
+                <TextBlock Grid.Column="1" Text="{Binding Title}" TextWrapping="Wrap"/>
+            </Grid>
+        </DataTemplate>
     </Application.Resources>
 </Application>

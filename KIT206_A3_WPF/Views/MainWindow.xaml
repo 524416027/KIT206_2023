@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KIT206_A3_WPF.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="540" Width="960">
+        Title="MainWindow" Height="600" MinHeight="600" Width="900" MinWidth="900">
 
     <Grid>
         <Grid.ColumnDefinitions>
