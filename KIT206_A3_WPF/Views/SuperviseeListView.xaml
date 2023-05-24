@@ -1,0 +1,34 @@
+﻿<Window x:Class="KIT206_A3_WPF.Views.SuperviseeListView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KIT206_A3_WPF.Views"
+        xmlns:controller="clr-namespace:KIT206_A3.Controllers"
+        mc:Ignorable="d"
+        Title="SuperviseeListView" Height="450" MinHeight="450" Width="320" MinWidth="320">
+
+    <Window.Resources>
+        <controller:ResearcherController x:Key="controller"/>
+        <ObjectDataProvider x:Key="superviseeList"
+            ObjectInstance="{StaticResource controller}"
+            MethodName="GetSelectedResearcherSuperviseeList">
+        </ObjectDataProvider>
+    </Window.Resources>
+
+    <Grid Margin="4 4 4 4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!-- First row with title -->
+        <Label Grid.Row="0" Content="Supervisees" FontWeight="Bold" FontSize="16"/>
+
+        <!-- supervisee list -->
+        <ListBox x:Name="supervisee_list" Grid.Row="3" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 ItemsSource="{Binding Source={StaticResource superviseeList}}"
+                 ItemTemplate="{StaticResource superviseeListTemplate}">
+        </ListBox>
+    </Grid>
+</Window>

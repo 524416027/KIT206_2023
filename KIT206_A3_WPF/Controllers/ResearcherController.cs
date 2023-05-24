@@ -15,96 +15,10 @@ namespace KIT206_A3.Controllers
         public static List<Researcher> ResearcherListFiltered { get; set; }
         public static Researcher SelectedResearcher { get; set; }
 
-        public static void DisplayResearcherList()
-        {
-            Console.WriteLine("====Researcher List====");
-            foreach (Researcher researcher in ResearcherListFiltered)
-            {
-                Console.WriteLine("ID:" + researcher.Id + " " + researcher.FirstName + " " + researcher.LastName + "(" + researcher.Title + ") " + researcher.GetType());
-            }
-            Console.WriteLine("========");
-        }
-
-        public static void DisplayResearcherDetails()
-        {
-            string printStr = "";
-
-            //is student
-            if (SelectedResearcher.Level == EmplymentLevel.Student)
-            {
-                Student studentResearcher = SelectedResearcher as Student;
-
-                printStr =
-                    "Name: " + studentResearcher.FirstName + " " + studentResearcher.LastName + "\n" +
-                    "Title: " + studentResearcher.Title + "\n" +
-                    "School/Unit: " + studentResearcher.SchoolUnit + "\n" +
-                    "Campus: " + studentResearcher.Campus.ToString() + "\n" +
-                    "Email: " + studentResearcher.Email + "\n" +
-                    "Job Title: " + studentResearcher.JobTitle + "\n" +
-                    "Commenced with institution: " + studentResearcher.CommencedInstitution.ToString() + "\n" +
-                    "Commenced current position: " + studentResearcher.CommencedPosition.ToString() + "\n" +
-                    "Tenure: " + studentResearcher.CalculateTenure() + "\n" +
-                    "Publication count: " + studentResearcher.PublicationCount + "\n" +
-                    "Degree: " + studentResearcher.Degree + "\n" +
-                    "Supervisor: " + studentResearcher.supervisor
-                    ;
-            }
-            //is staff
-            else
-            {
-                Staff staffResearcher = SelectedResearcher as Staff;
-
-                string positions = "";
-                if (staffResearcher.PreviousPositions != null)
-                {
-                    foreach (Position item in staffResearcher.PreviousPositions)
-                    {
-                        positions +=
-                            "\tPositionTitle: " + item.PositionLevel.ToString() + "\n" +
-                            "\tStartDate: " + item.StartDate.ToString() + "\n" +
-                            "\tEndDate: " + item.EndDate.ToString() + "\n" +
-                            "\t====\n";
-                    }
-                }
-
-                string superviseesStr = "";
-                if (staffResearcher.Supervisees != null)
-                {
-                    foreach (Student supervisee in staffResearcher.Supervisees)
-                    {
-                        if (superviseesStr != "") { superviseesStr += ", "; }
-                        superviseesStr += supervisee.FirstName + " " + supervisee.LastName;
-                    }
-                }
-
-                printStr =
-                    "Name: " + staffResearcher.FirstName + " " + staffResearcher.LastName + "\n" +
-                    "Title: " + staffResearcher.Title + "\n" +
-                    "School/Unit: " + staffResearcher.SchoolUnit + "\n" +
-                    "Campus: " + staffResearcher.Campus.ToString() + "\n" +
-                    "Email: " + staffResearcher.Email + "\n" +
-                    "Job Title: " + staffResearcher.JobTitle + "\n" +
-                    "Commenced with institution: " + staffResearcher.CommencedInstitution.ToString() + "\n" +
-                    "Commenced current position: " + staffResearcher.CommencedPosition.ToString() + "\n" +
-                    "Tenure: " + staffResearcher.CalculateTenure() + "\n" +
-                    "Previous positions:\n" + positions + "\n" +
-                    "Publication count: " + staffResearcher.PublicationCount + "\n" +
-                    "Supervision count: " + staffResearcher.SupervisionCount + "\n" +
-                    "Supervisees: " + superviseesStr
-                    ;
-            }
-            Console.WriteLine(printStr);
-            PublicationController.PublicationListFiltered = SelectedResearcher.PublicationList;
-            PublicationController.DisplayPublicationList();
-        }
-
         public static List<Researcher> LoadResearcherList()
         {
             ResearcherList = DatabaseAdaptor.FetchBasicResearcherList();
             ResearcherListFiltered = ResearcherList;
-
-            //test display
-            DisplayResearcherList();
 
             return ResearcherListFiltered;
         }
@@ -136,10 +50,6 @@ namespace KIT206_A3.Controllers
                     i = ResearcherList.Count;
                 }
             }
-
-            Console.WriteLine("====Researcher Detail====");
-            DisplayResearcherDetails();
-            Console.WriteLine("========");
         }
 
         /* find and create list of supervisees for the selected researcher */
@@ -224,6 +134,11 @@ namespace KIT206_A3.Controllers
 			}
 
             return name;
+		}
+
+        public static List<Researcher> GetSelectedResearcherSuperviseeList()
+		{
+            return (SelectedResearcher as Staff).Supervisees;
 		}
 
         /* calculate cumulative count */

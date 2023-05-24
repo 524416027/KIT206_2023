@@ -185,7 +185,7 @@
                 <TextBlock x:Name="tbSuperviseeCount" Grid.Column="1" Text="superviee count" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
 
-            <Button x:Name="btnSupervisionDetail" Grid.Row="9" Content="Supervision Details" BorderBrush="Black" BorderThickness="1" Padding="4" HorizontalAlignment="Left" Margin="0,4,0,0" Width="128" />
+            <Button x:Name="btnSupervisionDetail" Click="OnSuperviseeButtonPress" Grid.Row="9" Content="Supervision Details" BorderBrush="Black" BorderThickness="1" Padding="4" HorizontalAlignment="Left" Margin="0,4,0,0" Width="128" />
 
             <Grid Grid.Row="10">
                 <Grid.ColumnDefinitions>

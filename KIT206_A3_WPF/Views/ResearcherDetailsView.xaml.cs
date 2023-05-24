@@ -124,5 +124,11 @@ namespace KIT206_A3_WPF.Views
                 MessageBox.Show("Something wrong happened");
             }
         }
+
+        private void OnSuperviseeButtonPress(object sender, RoutedEventArgs e)
+        {
+            SuperviseeListView superviseeListWindow = new SuperviseeListView();
+            superviseeListWindow.Show();
+        }
     }
 }
