@@ -16,9 +16,6 @@ using KIT206_A3.Objects;
 
 namespace KIT206_A3_WPF.Views
 {
-	/// <summary>
-	/// Interaction logic for PublicationDetailsView.xaml
-	/// </summary>
 	public partial class PublicationDetailsView : Window
 	{
 		public PublicationDetailsView()

@@ -69,10 +69,10 @@ namespace KIT206_A3_WPF.Views
 			if(selectedPublication != null)
 			{
 				PublicationController.LoadPublicationDetails(selectedPublication.Doi);
-			}
 
-			//send out selected pubilication to all listener functions
-			OnPublicationSelectListeners(PublicationController.SelectedPublication);
+				//send out selected pubilication to all listener functions
+				OnPublicationSelectListeners(PublicationController.SelectedPublication);
+			}
 		}
 	}
 }

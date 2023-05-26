@@ -173,7 +173,7 @@
                 <TextBlock x:Name="tbPublicationCount" Grid.Column="1" Text="publication count" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
 
-            <Button Grid.Row="6" Content="Performance Details" BorderBrush="Black" BorderThickness="1" Padding="4" HorizontalAlignment="Left" Margin="0,4,0,0" Width="128" />
+            <Button Grid.Row="6" Click="OnPerformanceButtonPress" Content="Performance Details" BorderBrush="Black" BorderThickness="1" Padding="4" HorizontalAlignment="Left" Margin="0,4,0,0" Width="128" />
             <Button Grid.Row="7" Content="Cumulative Count" BorderBrush="Black" BorderThickness="1" Padding="4" HorizontalAlignment="Left" Margin="0,4,0,0" Width="128" />
 
             <Grid Grid.Row="8">

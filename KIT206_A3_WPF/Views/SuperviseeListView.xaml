@@ -3,16 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:KIT206_A3_WPF.Views"
-        xmlns:controller="clr-namespace:KIT206_A3.Controllers"
+        xmlns:view="clr-namespace:KIT206_A3_WPF.Views"
         mc:Ignorable="d"
         Title="SuperviseeListView" Height="450" MinHeight="450" Width="320" MinWidth="320">
 
     <Window.Resources>
-        <controller:ResearcherController x:Key="controller"/>
+        <view:ResearcherDetailsView x:Key="local"/>
         <ObjectDataProvider x:Key="superviseeList"
-            ObjectInstance="{StaticResource controller}"
-            MethodName="GetSelectedResearcherSuperviseeList">
+            ObjectInstance="{StaticResource local}"
+            MethodName="GetSelectedResearcherSupervieeList">
         </ObjectDataProvider>
     </Window.Resources>
 

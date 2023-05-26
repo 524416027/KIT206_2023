@@ -1,24 +1,61 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Xml;
+using System.Xml.Serialization;
 using KIT206_A3.Database;
 using KIT206_A3.Objects;
 
 namespace KIT206_A3.Controllers
 {
+    [XmlRoot(ElementName = "Projects")]
+    public class Projects
+	{
+        [XmlElement("Project")]
+        public List<Project> ProjectList { get; set; }
+	}
+
+    public class Project
+	{
+        [XmlElement("Funding")]
+        public int Funding { get; set; }
+
+        [XmlElement("Year")]
+        public int Year { get; set; }
+
+        [XmlElement("Researchers")]
+        public List<Researchers> researcherList { get; set; }
+    }
+
+    public class Researchers
+	{
+        [XmlElement("staff_id")]
+        public List<int> staffIdList { get; set; }
+	}
+
     class ResearcherController
     {
         public static List<Researcher> ResearcherList { get; set; }
         public static List<Researcher> ResearcherListFiltered { get; set; }
         public static Researcher SelectedResearcher { get; set; }
+        private static Projects projects;
 
         public static List<Researcher> LoadResearcherList()
         {
             ResearcherList = DatabaseAdaptor.FetchBasicResearcherList();
             ResearcherListFiltered = ResearcherList;
+
+            string fundingFileStr = System.IO.File.ReadAllText("../../../Data/Fundings_Rankings.xml");
+            XmlSerializer ser = new XmlSerializer(typeof(Projects));
+
+            using (TextReader reader = new StringReader(fundingFileStr))
+            {
+                projects = new Projects();
+                projects = (Projects)ser.Deserialize(reader);
+            }
 
             return ResearcherListFiltered;
         }
@@ -41,6 +78,23 @@ namespace KIT206_A3.Controllers
                     {
                         //assign supervisee list for the selected staff
                         (ResearcherList[i] as Staff).Supervisees = LoadSuperviees(ResearcherList[i]);
+
+                        //funding sum of selected researcher
+                        int totalFunding = 0;
+                        foreach(Project project in projects.ProjectList)
+						{
+                            foreach(Researchers researchers in project.researcherList)
+							{
+                                foreach(int staffId in researchers.staffIdList)
+								{
+                                    if(staffId == researcherId)
+									{
+                                        totalFunding += project.Funding;
+									}
+								}
+							}
+						}
+                        (ResearcherList[i] as Staff).FundingReceived = totalFunding;
                     }
 
                     //current selected researcher
@@ -134,11 +188,6 @@ namespace KIT206_A3.Controllers
 			}
 
             return name;
-		}
-
-        public static List<Researcher> GetSelectedResearcherSuperviseeList()
-		{
-            return (SelectedResearcher as Staff).Supervisees;
 		}
 
         /* calculate cumulative count */

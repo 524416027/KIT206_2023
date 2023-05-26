@@ -244,7 +244,7 @@ namespace KIT206_A3.Database
                 conn.Open();
 
                 MySqlCommand cmd = new MySqlCommand(
-                    "SELECT publication.doi, publication.title, publication.year " +
+                    "SELECT publication.doi, publication.title, publication.year, publication.ranking " +
                     "FROM publication " +
                     "INNER JOIN researcher_publication ON publication.doi = researcher_publication.doi " +
                     "WHERE researcher_publication.researcher_id = ?id",
@@ -260,7 +260,8 @@ namespace KIT206_A3.Database
                         {
                             Doi = rdr.GetString(0),
                             Title = rdr.GetString(1),
-                            PublicationYear = rdr.GetInt32(2)
+                            PublicationYear = rdr.GetInt32(2),
+                            Rank = ParseEnum<Ranking>(rdr.GetString(3))
                         }
                     );
                 }

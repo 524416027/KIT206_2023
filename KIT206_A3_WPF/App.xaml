@@ -9,9 +9,9 @@
         <DataTemplate x:Key="researcherListTemplate">
             <TextBlock HorizontalAlignment="Stretch" Grid.Row="1" FontSize="14" Margin="4,4,0,0" VerticalAlignment="Center">
                     <TextBlock.Text>
-                        <MultiBinding StringFormat=" {0}, {1} ({2})">
-                            <Binding Path="LastName"/>
+                    <MultiBinding StringFormat=" {0}, {1} ({2})">
                             <Binding Path="FirstName"/>
+                            <Binding Path="LastName"/>
                             <Binding Path="Title"/>
                         </MultiBinding>
                     </TextBlock.Text>
@@ -42,6 +42,19 @@
                 <TextBlock Grid.Column="0" Text="{Binding PublicationYear}"/>
                 <TextBlock Grid.Column="1" Text="{Binding Title}" TextWrapping="Wrap"/>
             </Grid>
+        </DataTemplate>
+
+        <!-- supervisee list -->
+        <DataTemplate x:Key="superviseeListTemplate">
+            <TextBlock HorizontalAlignment="Stretch" Grid.Row="1" FontSize="14" Margin="4,4,0,0" VerticalAlignment="Center">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat=" {0}, {1} ({2})">
+                        <Binding Path="FirstName"/>
+                        <Binding Path="LastName"/>
+                        <Binding Path="Title"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
         </DataTemplate>
     </Application.Resources>
 </Application>

@@ -4,37 +4,38 @@ using System.Windows;
 
 namespace KIT206_A3_WPF
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
 
-            researcherListView.ResearcherSelected += OnResearcherSelected;
+            //researcherListView.ResearcherSelected += OnResearcherSelected;
+            researcherListView.OnResearcherSelectListeners += OnResearcherSelected;
             publicationListView.OnPublicationSelectListeners += OnPublicationSelected;
 
+            //disable the display of researcher details and publication list view when first start the application
             researcherDetailsView.Visibility = Visibility.Hidden;
             publicationListView.Visibility = Visibility.Hidden;
         }
 
-        private void OnResearcherSelected(object sender, ResearcherSelectedEventArgs e)
+        private void OnResearcherSelected(Researcher selectedResearcher)
         {
-            Researcher researcher = e.SelectedResearcher;
-
-            researcherDetailsView.UpdateResearcherDetails(researcher: researcher);
+            //update the view to display the current selected researcher
+            researcherDetailsView.UpdateResearcherDetails(selectedResearcher);
             researcherDetailsView.DisplayResearcherDetails();
 
-            publicationListView.UpdatePublicationList(researcher);
+            //update the view to display the current selected researcher's publication
+            publicationListView.UpdatePublicationList(selectedResearcher);
 
+            //show the researcher detail and publication list view to the user
             researcherDetailsView.Visibility = Visibility.Visible;
             publicationListView.Visibility = Visibility.Visible;
         }
 
-        public void OnPublicationSelected(Publication selectedPublication)
+        private void OnPublicationSelected(Publication selectedPublication)
 		{
+            //update and display the selected publication detail in a new window
             PublicationDetailsView publicationDetailsWindow = new PublicationDetailsView();
             publicationDetailsWindow.DisplayResearcherDetails(selectedPublication);
             publicationDetailsWindow.Show();

@@ -28,19 +28,19 @@ namespace KIT206_A3.Objects
                 }
             }
 
-            return (double)publicationCount / 3;
+            return Math.Round((double)publicationCount / 3, 2);
         }
 
         public double CalculatePublicationPerformance()
         {
             int commencementYearCount = (DateTime.Now.Year - CommencedPosition.Year) + 1;
-            return (double)(PublicationCount / commencementYearCount);
+            return Math.Round((double)PublicationCount / commencementYearCount, 2);
         }
 
         public double CalculateFundReceivePerformance()
         {
 			int commencementYearCount = (DateTime.Now.Year - CommencedPosition.Year) + 1;
-            return (double)(FundingReceived / commencementYearCount);
+            return Math.Round((double)FundingReceived / commencementYearCount, 2);
         }
     }
 }

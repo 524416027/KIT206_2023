@@ -53,8 +53,18 @@ namespace KIT206_A3.Objects
 
         public double CalculateQ1Percentage()
         {
-            //number of publication published in the year / quarter 1 publications * 100
-            return 0;
+            //total number of Q1 publication / total number of publication * 100
+            int q1Count = 0;
+
+            foreach(Publication pub in PublicationList)
+			{
+                if(pub.Rank == Ranking.Q1)
+				{
+                    q1Count++;
+				}
+			}
+
+            return Math.Round((double)q1Count / PublicationCount * 100, 2);
         }
 
         public Position GetEarliestJob()

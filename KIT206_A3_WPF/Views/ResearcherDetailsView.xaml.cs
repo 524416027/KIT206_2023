@@ -3,8 +3,10 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Collections.Generic;
 
 using KIT206_A3.Controllers;
+
 
 namespace KIT206_A3_WPF.Views
 {
@@ -17,11 +19,13 @@ namespace KIT206_A3_WPF.Views
         {
             InitializeComponent();
         }
+
         public void UpdateResearcherDetails(Researcher researcher)
         {
             this.researcher = researcher;
             DisplayResearcherDetails();
         }
+
         private void populateEntries()
         {
             // Researcher researcher = _researcherController.LoadResearcherDetails(selectedResearcher);
@@ -125,10 +129,27 @@ namespace KIT206_A3_WPF.Views
             }
         }
 
+        public Researcher GetSelectedResearcher()
+		{
+            return ResearcherController.SelectedResearcher;
+		}
+
+        public List<Researcher> GetSelectedResearcherSupervieeList()
+		{
+            return (ResearcherController.SelectedResearcher as Staff).Supervisees;
+		}
+
         private void OnSuperviseeButtonPress(object sender, RoutedEventArgs e)
         {
             SuperviseeListView superviseeListWindow = new SuperviseeListView();
             superviseeListWindow.Show();
         }
+
+        private void OnPerformanceButtonPress(object sender, RoutedEventArgs e)
+        {
+            PerformanceDetailView performanceDetailWindow = new PerformanceDetailView();
+            performanceDetailWindow.DisplayPerformanceDetails(ResearcherController.SelectedResearcher);
+            performanceDetailWindow.Show();
+		}
     }
 }

@@ -9,7 +9,8 @@ namespace KIT206_A3_WPF.Views
 
     public partial class ResearcherListView : UserControl
     {
-        public event EventHandler<ResearcherSelectedEventArgs> ResearcherSelected;
+        public delegate void OnResearcherSelectDelegate(Researcher selectedResearcher);
+        public event OnResearcherSelectDelegate OnResearcherSelectListeners = null;
 
         private EmplymentLevel _selectedLevel = EmplymentLevel.EnumCount;
         private string _selectedName = "";
@@ -61,13 +62,12 @@ namespace KIT206_A3_WPF.Views
         {
             //selected researcher with basic details
             Researcher selectedResearcher = (sender as ListBox).SelectedItem as Researcher;
-            if(selectedResearcher != null)
+            if (selectedResearcher != null)
 			{
                 //load full details for the selected researcher
                 ResearcherController.LoadResearcherDetail(selectedResearcher.Id);
 
-                //call back function send out the loaded selected researcher
-                ResearcherSelected?.Invoke(this, new ResearcherSelectedEventArgs(ResearcherController.SelectedResearcher));
+                OnResearcherSelectListeners(ResearcherController.SelectedResearcher);
             }
         }
     }
