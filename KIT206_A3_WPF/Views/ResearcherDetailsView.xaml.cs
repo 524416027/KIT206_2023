@@ -139,6 +139,11 @@ namespace KIT206_A3_WPF.Views
             return (ResearcherController.SelectedResearcher as Staff).Supervisees;
 		}
 
+        public List<CumulativePair> GetSelectedResearcherCumulativeList()
+		{
+            return (ResearcherController.GetCumulativeCount());
+		}
+
         private void OnSuperviseeButtonPress(object sender, RoutedEventArgs e)
         {
             SuperviseeListView superviseeListWindow = new SuperviseeListView();
@@ -151,5 +156,11 @@ namespace KIT206_A3_WPF.Views
             performanceDetailWindow.DisplayPerformanceDetails(ResearcherController.SelectedResearcher);
             performanceDetailWindow.Show();
 		}
+
+        private void OnCumulativeCountButtonPress(object sender, RoutedEventArgs e)
+        {
+            CumulativeCountView cumulativeCountWindow = new CumulativeCountView();
+            cumulativeCountWindow.Show();
+        }
     }
 }

@@ -1,0 +1,38 @@
+﻿<Window x:Class="KIT206_A3_WPF.Views.CumulativeCountView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KIT206_A3_WPF.Views"
+        xmlns:controller="clr-namespace:KIT206_A3.Controllers"
+        mc:Ignorable="d"
+        Title="CumulativeCountView" Height="450" MinHeight="450" Width="320" MinWidth="320">
+
+    <Window.Resources>
+        <local:ResearcherDetailsView x:Key="local"/>
+        <ObjectDataProvider x:Key="cumulativeList"
+            ObjectInstance="{StaticResource local}"
+            MethodName="GetSelectedResearcherCumulativeList">
+        </ObjectDataProvider>
+    </Window.Resources>
+
+    <Grid Margin="4 4 4 4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!-- First row with title -->
+        <Label Grid.Row="0" Content="Cumulative Count" FontWeight="Bold" FontSize="16"/>
+
+        <!-- Second row of list title -->
+        <Label Grid.Row="1" Content=" Year       Count" FontWeight="Bold"/>
+
+        <!-- cumulative list -->
+        <ListBox x:Name="cumulative_list" Grid.Row="3" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 ItemsSource="{Binding Source={StaticResource cumulativeList}}"
+                 ItemTemplate="{StaticResource cumulativeCountTemplate}">
+        </ListBox>
+    </Grid>
+</Window>

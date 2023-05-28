@@ -56,5 +56,18 @@
                 </TextBlock.Text>
             </TextBlock>
         </DataTemplate>
+
+        <!-- cumulative list -->
+        <DataTemplate x:Key="cumulativeCountTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="48"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="{Binding Year}"/>
+                <TextBlock Grid.Column="1" Text="{Binding Count}"/>
+            </Grid>
+        </DataTemplate>
     </Application.Resources>
 </Application>

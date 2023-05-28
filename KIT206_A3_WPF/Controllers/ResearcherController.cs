@@ -36,6 +36,12 @@ namespace KIT206_A3.Controllers
         public List<int> staffIdList { get; set; }
 	}
 
+    public class CumulativePair
+	{
+        public int Year { get; set; }
+        public int Count { get; set; }
+	}
+
     class ResearcherController
     {
         public static List<Researcher> ResearcherList { get; set; }
@@ -191,10 +197,10 @@ namespace KIT206_A3.Controllers
 		}
 
         /* calculate cumulative count */
-        public static List<(int, int)> CumulativeCount()
+        public static List<CumulativePair> GetCumulativeCount()
         {
             //list of cumulative count information to display
-            List<(int, int)> cumulativeList = new List<(int, int)>();
+            List<CumulativePair> cumulativeList = new List<CumulativePair>();
 
             //list of the publication to be calculated by the current selected researcher
             List<Publication> yearOrderPublications = new List<Publication>(SelectedResearcher.PublicationList);
@@ -220,7 +226,12 @@ namespace KIT206_A3.Controllers
                     index++;
 
                     //assign the starting value
-                    (int, int) newPair = (year, 1);
+                    CumulativePair newPair = new CumulativePair
+                    {
+                        Year = year,
+                        Count = 1
+                    };
+
                     //add to the list
                     cumulativeList.Add(newPair);
                 }
@@ -228,14 +239,8 @@ namespace KIT206_A3.Controllers
                 else
                 {
                     //add count to the current year group into the list
-                    cumulativeList[index] = (cumulativeList[index].Item1, cumulativeList[index].Item2 + 1);
+                    cumulativeList[index].Count++;
                 }
-            }
-
-            //FIXME: console output
-            foreach ((int, int) child in cumulativeList)
-            {
-                Console.WriteLine("Year: " + child.Item1 + "\tPublication Count: " + child.Item2);
             }
 
             return cumulativeList;

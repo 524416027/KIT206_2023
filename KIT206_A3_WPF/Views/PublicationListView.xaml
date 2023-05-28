@@ -58,7 +58,7 @@
 
         <Label Grid.Row="2" Content=" Year       Title" FontWeight="Bold"/>
 
-        <!-- researcher list -->
+        <!-- publication list -->
         <ListBox x:Name="publication_list" Grid.Row="3" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  ItemsSource="{Binding Source={StaticResource publicationList}}"
                  ItemTemplate="{StaticResource publicationListTemplate}"
