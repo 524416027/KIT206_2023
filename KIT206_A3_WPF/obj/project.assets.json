@@ -1715,11 +1715,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pokha\\OneDrive\\Desktop\\New_2023_05_18\\KIT206_2023-master_4\\KIT206_2023-master_4\\KIT206_2023-master\\KIT206_A3_WPF\\KIT206_A3_WPF.csproj",
+      "projectUniqueName": "C:\\Users\\pokha\\Music\\KIT206_2023\\KIT206_A3_WPF\\KIT206_A3_WPF.csproj",
       "projectName": "KIT206_A3_WPF",
-      "projectPath": "C:\\Users\\pokha\\OneDrive\\Desktop\\New_2023_05_18\\KIT206_2023-master_4\\KIT206_2023-master_4\\KIT206_2023-master\\KIT206_A3_WPF\\KIT206_A3_WPF.csproj",
+      "projectPath": "C:\\Users\\pokha\\Music\\KIT206_2023\\KIT206_A3_WPF\\KIT206_A3_WPF.csproj",
       "packagesPath": "C:\\Users\\pokha\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pokha\\OneDrive\\Desktop\\New_2023_05_18\\KIT206_2023-master_4\\KIT206_2023-master_4\\KIT206_2023-master\\KIT206_A3_WPF\\obj\\",
+      "outputPath": "C:\\Users\\pokha\\Music\\KIT206_2023\\KIT206_A3_WPF\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\pokha\\AppData\\Roaming\\NuGet\\NuGet.Config",
