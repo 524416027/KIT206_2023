@@ -40,5 +40,11 @@ namespace KIT206_A3_WPF
             publicationDetailsWindow.DisplayResearcherDetails(selectedPublication);
             publicationDetailsWindow.Show();
         }
+
+        private void OnGeneratePerformanceReportButtonPress(object sender, RoutedEventArgs e)
+		{
+            PerformanceReportView performanceReportWindow = new PerformanceReportView();
+            performanceReportWindow.Show();
+		}
     }
 }

@@ -158,8 +158,6 @@ namespace KIT206_A3.Database
                     else
                     {
                         selectedResearcher = new Staff();
-
-                        //TODO: load funds from xml
                     }
 
                     /* assign general details */

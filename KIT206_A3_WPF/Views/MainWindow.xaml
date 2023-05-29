@@ -8,14 +8,33 @@
         Title="MainWindow" Height="600" MinHeight="600" Width="900" MinWidth="900">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition MinWidth="240" Width="2*" MaxWidth="240"/>
-            <ColumnDefinition MinWidth="320" Width="3*" MaxWidth="320"/>
-            <ColumnDefinition MinWidth="320" Width="3*"/>
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
-        <local:ResearcherListView Grid.Column="0" x:Name="researcherListView"/>
-        <local:ResearcherDetailsView Grid.Column="1" x:Name="researcherDetailsView"/>
-        <local:PublicationListView Grid.Column="2" x:Name="publicationListView"/>
+        <!-- First row with performance report button -->
+        <Border Grid.Row="0" BorderThickness="0,1,0,1" BorderBrush="Black"/>
+        <Button Grid.Row="0" Click="OnGeneratePerformanceReportButtonPress" Content="Generate Performance Report" BorderBrush="Black" BorderThickness="1" Padding="4" HorizontalAlignment="Left" Margin="4,4,0,4" Width="192" IsDefault="True" FontWeight="Bold" />
+
+        <!-- Second row with 3 views -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="240" Width="2*" MaxWidth="240"/>
+                <ColumnDefinition MinWidth="320" Width="3*" MaxWidth="320"/>
+                <ColumnDefinition MinWidth="320" Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- First column of researcher list view -->
+            <local:ResearcherListView Grid.Column="0" x:Name="researcherListView"/>
+            <Border Grid.Column="0" BorderThickness="0,0,1,0" BorderBrush="Black"/>
+
+            <!-- Second column of researcher details view -->
+            <local:ResearcherDetailsView Grid.Column="1" x:Name="researcherDetailsView"/>
+            <Border Grid.Column="1" BorderThickness="0,0,1,0" BorderBrush="Black"/>
+
+            <!-- Third column of publication list view -->
+            <local:PublicationListView Grid.Column="2" x:Name="publicationListView"/>
+        </Grid>
     </Grid>
 </Window>

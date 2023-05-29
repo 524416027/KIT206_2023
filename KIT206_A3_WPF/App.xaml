@@ -69,5 +69,32 @@
                 <TextBlock Grid.Column="1" Text="{Binding Count}"/>
             </Grid>
         </DataTemplate>
+
+        <!-- performance report list -->
+        <DataTemplate x:Key="performanceReportTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="48"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat=" {0}%">
+                            <Binding Path="Performance"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Grid.Column="1">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat=" {0}, {1} ({2})">
+                            <Binding Path="FirstName"/>
+                            <Binding Path="LastName"/>
+                            <Binding Path="Title"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </Grid>
+        </DataTemplate>
     </Application.Resources>
 </Application>

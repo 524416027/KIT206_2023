@@ -36,10 +36,14 @@ namespace KIT206_A3_WPF.Views
 			//selected researcher is staff
 			if(researcher is Staff)
 			{
+				//calculate staff performance
+				double threeYearAverage = (researcher as Staff).CalculateAverage3Year();
+				double publicationPerformance = (researcher as Staff).CalculatePublicationPerformance();
+				double fundingPerformance = (researcher as Staff).FundingReceived;
 				//show staff performances
-				tb3YearAverage.Text = (researcher as Staff).CalculateAverage3Year().ToString() + " Publications in 3 Years";
-				tbFundingReceived.Text = "$" + (researcher as Staff).FundingReceived.ToString();
-				tbPublicationPerformance.Text = (researcher as Staff).CalculatePublicationPerformance().ToString() + " Publications per Year";
+				tb3YearAverage.Text = threeYearAverage.ToString() + " Publications in 3 Years";
+				tbFundingReceived.Text = "$" + fundingPerformance.ToString();
+				tbPublicationPerformance.Text = publicationPerformance.ToString() + " Publications per Year(" + publicationPerformance * 100 + "%)";
 				tbFundingPerformance.Text = "$" + (researcher as Staff).CalculateFundReceivePerformance().ToString() + " Fundings per Year";
 			}
 			//selected researcher is student
