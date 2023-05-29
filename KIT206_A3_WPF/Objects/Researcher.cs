@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KIT206_A3.Objects
 {
-    public enum EmplymentLevel { All,Student, A, B, C, D, E, EnumCount }
+    public enum EmplymentLevel { Student, A, B, C, D, E, EnumCount }
     public enum ResearcherType { Staff, Student, EnumCount }
     public enum Campus { Hobart, Launceston, CradleCoast, EnumCount }
 
@@ -14,7 +14,6 @@ namespace KIT206_A3.Objects
     {
         public Dictionary<EmplymentLevel, string> JobTitleNames = new Dictionary<EmplymentLevel, string>()
         {
-            { EmplymentLevel.All, "All" },
             { EmplymentLevel.Student, "Student" },
             { EmplymentLevel.A, "Research Associate" },
             { EmplymentLevel.B, "Lecturer" },
