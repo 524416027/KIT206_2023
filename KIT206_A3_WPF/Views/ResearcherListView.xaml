@@ -29,7 +29,7 @@
         <!-- level filter -->
         <Label Content="Level Filter:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="24" Width="76" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Margin="-4,20,0,0"/>
         <ComboBox x:Name="comboBoxLevelFilter" SelectionChanged="OnLevelFilterSelect" HorizontalAlignment="Left" VerticalAlignment="Top" Width="128" Margin="72,24,0,0" Height="20">
-            <TextBlock Text=""/>
+            <TextBlock Text="All"/>
             <TextBlock Text="Student"/>
             <TextBlock Text="A"/>
             <TextBlock Text="B"/>
