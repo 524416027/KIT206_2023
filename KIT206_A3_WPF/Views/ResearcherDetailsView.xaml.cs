@@ -162,5 +162,7 @@ namespace KIT206_A3_WPF.Views
             CumulativeCountView cumulativeCountWindow = new CumulativeCountView();
             cumulativeCountWindow.Show();
         }
+
+        private void InvertOrder_Click(object sender, RoutedEventArgs e) { }
     }
 }
