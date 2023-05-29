@@ -46,7 +46,7 @@ namespace KIT206_A3_WPF.Views
         {
             string selectText = ((sender as ComboBox).SelectedItem as TextBlock).Text;
 
-            if (selectText == "")
+            if (selectText == "All")
             {
                 _selectedLevel = EmplymentLevel.EnumCount;
             }
