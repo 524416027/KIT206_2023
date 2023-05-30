@@ -152,18 +152,6 @@
                 <TextBlock x:Name="tbPreviousPositionTitle" Text="Previous positions:" FontWeight="Bold" Margin="4,0,0,0"/>
             </Grid>
 
-            <!--<Grid Grid.Row="4">
-                <ListView x:Name="previous_position_list" Grid.Column="0" ScrollViewer.VerticalScrollBarVisibility="Auto" Visibility="Visible">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Width="Auto" Header="Level" DisplayMemberBinding="{Binding PositionLevel}"/>
-                            <GridViewColumn Width="Auto" Header="Start" DisplayMemberBinding="{Binding Path=StartDate, StringFormat='dd/MM/yyyy'}"/>
-                            <GridViewColumn Width="Auto" Header="End" DisplayMemberBinding="{Binding Path=EndDate, StringFormat='dd/MM/yyyy'}"/>
-                            <GridViewColumn Width="Auto" Header="Invert Order" DisplayMemberBinding="{Binding Path=EndDate, StringFormat='dd/MM/yyyy'}"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </Grid>-->
             <Grid Grid.Row="4">
                 <ListView x:Name="previous_position_list" Grid.Column="0" ScrollViewer.VerticalScrollBarVisibility="Auto" Visibility="Visible">
                     <ListView.View>
@@ -171,24 +159,10 @@
                             <GridViewColumn Width="Auto" Header="Level" DisplayMemberBinding="{Binding PositionLevel}"/>
                             <GridViewColumn Width="Auto" Header="Start" DisplayMemberBinding="{Binding Path=StartDate, StringFormat='dd/MM/yyyy'}"/>
                             <GridViewColumn Width="Auto" Header="End" DisplayMemberBinding="{Binding Path=EndDate, StringFormat='dd/MM/yyyy'}"/>
-                            <GridViewColumn Width="Auto">
-                                <GridViewColumn.Header>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Invert Order"/>
-                                        <Button Content="▲" Click="InvertOrder_Click"/>
-                                    </StackPanel>
-                                </GridViewColumn.Header>
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <!-- Display the data for the "Invert Order" column here -->
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>
             </Grid>
-
 
             <Grid Grid.Row="5">
                 <Grid.ColumnDefinitions>

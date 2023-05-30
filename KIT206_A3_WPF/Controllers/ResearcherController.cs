@@ -164,14 +164,21 @@ namespace KIT206_A3.Controllers
 		/* filter researcher list by name */
 		public static List<Researcher> FilterResearcher(string name)
 		{
-			//filter by name contained either in first or last name
-			var filtered =
-				from Researcher researcher in ResearcherList
-				where researcher.FirstName.ToUpper().Contains(name.ToUpper()) || researcher.LastName.ToUpper().Contains(name.ToUpper())
-				select researcher;
+			if (name != "")
+			{
+				//filter by name contained either in first or last name
+				var filtered =
+					from Researcher researcher in ResearcherList
+					where researcher.FirstName.ToUpper().Contains(name.ToUpper()) || researcher.LastName.ToUpper().Contains(name.ToUpper())
+					select researcher;
 
-			//store filtered result to display
-			ResearcherListFiltered = new List<Researcher>(filtered);
+				//store filtered result to display
+				ResearcherListFiltered = new List<Researcher>(filtered);
+			}
+			else
+			{
+				ResearcherListFiltered = new List<Researcher>(ResearcherList);
+			}
 
 			return ResearcherListFiltered;
 		}
@@ -179,14 +186,22 @@ namespace KIT206_A3.Controllers
 		/* filter researcher list by both emplyment level and name */
 		public static List<Researcher> FilterResearcher(EmplymentLevel level, string name)
 		{
-			//filter by name contained either in first or last name
-			var filtered =
-				from Researcher researcher in ResearcherList
-				where researcher.Level == level && (researcher.FirstName.ToUpper().Contains(name.ToUpper()) || researcher.LastName.ToUpper().Contains(name.ToUpper()))
-				select researcher;
+			if (name != "")
+			{
+				//filter by name contained either in first or last name
+				var filtered =
+					from Researcher researcher in ResearcherList
+					where researcher.Level == level && (researcher.FirstName.ToUpper().Contains(name.ToUpper()) || researcher.LastName.ToUpper().Contains(name.ToUpper()))
+					select researcher;
 
-			//store filtered result to display
-			ResearcherListFiltered = new List<Researcher>(filtered);
+				//store filtered result to display
+				ResearcherListFiltered = new List<Researcher>(filtered);
+			}
+			else
+			{
+				ResearcherListFiltered = new List<Researcher>(FilterResearcher(level));
+			}
+
 			return ResearcherListFiltered;
 		}
 
@@ -293,25 +308,30 @@ namespace KIT206_A3.Controllers
 				}
 			);
 
+			//group each performance in category
 			foreach (PerformancePair performance in performanceList)
 			{
-				if (performance.Performance >= 200)
+				if (performance.Performance <= 70)
 				{
-					performanceListGroups[3].Add(performance);
+					performanceListGroups[0].Add(performance);
+				}
+				else if (performance.Performance > 70 && performance.Performance < 110)
+				{
+					performanceListGroups[1].Add(performance);
 				}
 				else if (performance.Performance >= 110)
 				{
 					performanceListGroups[2].Add(performance);
 				}
-				else if (performance.Performance >= 70)
+				else//(performance.Performance >= 200)
 				{
-					performanceListGroups[1].Add(performance);
-				}
-				else
-				{
-					performanceListGroups[0].Add(performance);
+					performanceListGroups[3].Add(performance);
 				}
 			}
+
+			//meeting minimum and star performers in decrease order
+			performanceListGroups[2].Reverse();
+			performanceListGroups[3].Reverse();
 
 			return performanceListGroups;
 		}

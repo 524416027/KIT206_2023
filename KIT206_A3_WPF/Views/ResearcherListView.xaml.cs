@@ -39,6 +39,7 @@ namespace KIT206_A3_WPF.Views
         private void OnNameFilterEnter(object sender, KeyEventArgs e)
         {
             _selectedName = (sender as TextBox).Text;
+            _selectedName = _selectedName.Replace(" ", "");
             FilterResearcherList();
         }
 
