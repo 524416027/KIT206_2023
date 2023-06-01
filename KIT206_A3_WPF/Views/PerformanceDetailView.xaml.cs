@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
+
 using KIT206_A3.Objects;
-using KIT206_A3.Controllers;
 
 namespace KIT206_A3_WPF.Views
 {
@@ -49,7 +37,7 @@ namespace KIT206_A3_WPF.Views
 			//selected researcher is student
 			else
 			{
-				//disable the performance section student doesn't have
+				//disable the performance section that is unavailable for student researcher
 				tb3YearAverageTitle.Visibility = Visibility.Collapsed;
 				tb3YearAverage.Visibility = Visibility.Collapsed;
 				tbFundingReceivedTitle.Visibility = Visibility.Collapsed;

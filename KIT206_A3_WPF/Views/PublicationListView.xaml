@@ -8,6 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450">
 
+    <!-- data resources -->
     <UserControl.Resources>
         <controller:PublicationController x:Key="controller"/>
         <ObjectDataProvider x:Key="publicationList"
@@ -24,20 +25,20 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <!-- First row with title -->
+        <!-- row 1 with title -->
         <Label Grid.Row="0" Content="Publications" FontWeight="Bold" FontSize="16"/>
 
-        <!-- Search section -->
+        <!-- row 2 search section -->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Invert order button -->
+            <!-- invert order button -->
             <Button Grid.Column="0" Margin="0,4,16,4" Content="Invert Order" Click="OnInvertButtonPress" Width="80" HorizontalAlignment="Left" Height="26"/>
 
-            <!-- Filter with year -->
+            <!-- year filter -->
             <Grid Grid.Column="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -47,15 +48,13 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0" Text="Year from " VerticalAlignment="Center"/>
-
                 <TextBox Grid.Column="1" x:Name="textBoxYearFrom" KeyUp="OnYearFromFilterEnter" TextWrapping="Wrap" Width="48" Height="16"/>
-
                 <TextBlock Grid.Column="2" Text=" to " VerticalAlignment="Center"/>
-
                 <TextBox Grid.Column="3" x:Name="textBoxYearTo" KeyUp="OnYearToFilterEnter" TextWrapping="Wrap" Width="48" Height="16"/>
             </Grid>
         </Grid>
 
+        <!-- row 1 of title for publication list -->
         <Label Grid.Row="2" Content=" Year       Title" FontWeight="Bold"/>
 
         <!-- publication list -->

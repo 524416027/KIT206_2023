@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 using KIT206_A3.Objects;
 
@@ -25,6 +13,7 @@ namespace KIT206_A3_WPF.Views
 
 		public void DisplayResearcherDetails(Publication publication)
 		{
+			//assign values to text box to display
 			tbDoi.Text = publication.Doi;
 
 			tbTitle.Text = publication.Title;

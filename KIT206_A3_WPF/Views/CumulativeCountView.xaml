@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         Title="CumulativeCountView" Height="450" MinHeight="450" Width="320" MinWidth="320">
 
+    <!-- data resources -->
     <Window.Resources>
         <local:ResearcherDetailsView x:Key="local"/>
         <ObjectDataProvider x:Key="cumulativeList"
@@ -23,10 +24,10 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <!-- First row with title -->
+        <!-- first row with title -->
         <Label Grid.Row="0" Content="Cumulative Count" FontWeight="Bold" FontSize="16"/>
 
-        <!-- Second row of list title -->
+        <!-- second row of list title -->
         <Label Grid.Row="1" Content=" Year       Count" FontWeight="Bold"/>
 
         <!-- cumulative list -->

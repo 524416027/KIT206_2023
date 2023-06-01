@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:KIT206_A3_WPF.Views"
         mc:Ignorable="d"
         Title="PerformanceReportView" Height="450" MinHeight="450" Width="320" MinWidth="320">
+    
     <Grid Margin="4 4 4 4">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -19,7 +20,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- First row with title and copy email button -->
+        <!-- row 1 with title and copy email button -->
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -27,29 +28,32 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Column="0" Content="Performance Report" FontWeight="Bold" FontSize="16"/>
-
             <Button Grid.Column="1" Click="OnCopyEmailButtonPress" Content="Copy Emails" BorderBrush="Black" BorderThickness="1" Padding="4" HorizontalAlignment="Right" Margin="4,0,0,4" Width="96" IsDefault="True" FontWeight="Bold" />
         </Grid>
         <Border Grid.Row="0" BorderBrush="Black" BorderThickness="0,0,0,1"/>
 
+        <!-- row 2 of "Poor" performance group -->
         <Label Grid.Row="1" Content="Poor" FontWeight="Bold" FontSize="12"/>
         <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0,0,0,1"/>
         <ListBox x:Name="performance_poor_list" Grid.Row="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  ItemTemplate="{StaticResource performanceReportTemplate}">
         </ListBox>
 
+        <!-- row 3 of "below expectations" performance group -->
         <Label Grid.Row="3" Content="Below Expectations" FontWeight="Bold" FontSize="12"/>
         <Border Grid.Row="3" BorderBrush="Black" BorderThickness="0,0,0,1"/>
         <ListBox x:Name="performance_belowExpectations_list" Grid.Row="4" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  ItemTemplate="{StaticResource performanceReportTemplate}">
         </ListBox>
 
+        <!-- row 4 of "meeting minimum" performance group -->
         <Label Grid.Row="5" Content="Meeting Minimum" FontWeight="Bold" FontSize="12"/>
         <Border Grid.Row="5" BorderBrush="Black" BorderThickness="0,0,0,1"/>
         <ListBox x:Name="performance_meetingMinimum_list" Grid.Row="6" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  ItemTemplate="{StaticResource performanceReportTemplate}">
         </ListBox>
 
+        <!-- row 5 of "star performers" performance group -->
         <Label Grid.Row="7" Content="Star Performers" FontWeight="Bold" FontSize="12"/>
         <Border Grid.Row="7" BorderBrush="Black" BorderThickness="0,0,0,1"/>
         <ListBox x:Name="performance_starPerformers_list" Grid.Row="8" ScrollViewer.HorizontalScrollBarVisibility="Disabled"

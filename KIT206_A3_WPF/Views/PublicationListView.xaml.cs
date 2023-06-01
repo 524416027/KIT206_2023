@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 using KIT206_A3.Controllers;
 using KIT206_A3.Objects;
 
@@ -33,31 +24,37 @@ namespace KIT206_A3_WPF.Views
 
 		public void UpdatePublicationList(Researcher researcher)
 		{
+			//assign publication list of selected researcher to item source to listbox for display
 			publication_list.ItemsSource = PublicationController.LoadPublicationList(researcher);
 		}
 
 		private void OnYearFromFilterEnter(object sender, KeyEventArgs e)
 		{
+			//get the start year filter input
 			if(!Int32.TryParse((sender as TextBox).Text, out _startYear))
 			{
 				_startYear = 0;
 			}
 			
+			//assign filtered publication list to listbox as item source
 			publication_list.ItemsSource = PublicationController.LoadPublicationList(_startYear, _endYear);
 		}
 
 		private void OnYearToFilterEnter(object sender, KeyEventArgs e)
 		{
+			//get the end year filter input
 			if(!Int32.TryParse((sender as TextBox).Text, out _endYear))
 			{
 				_endYear = DateTime.Now.Year;
 			}
 
+			//assign filtered publication list to listbox as item source
 			publication_list.ItemsSource = PublicationController.LoadPublicationList(_startYear, _endYear);
 		}
 
 		private void OnInvertButtonPress(object sender, RoutedEventArgs e)
 		{
+			//assign inverted publication list to listbox as item source
 			publication_list.ItemsSource = PublicationController.InvertPublicationList();
 		}
 
@@ -68,6 +65,7 @@ namespace KIT206_A3_WPF.Views
 
 			if(selectedPublication != null)
 			{
+				//load full detail for the selected publication
 				PublicationController.LoadPublicationDetails(selectedPublication.Doi);
 
 				//send out selected pubilication to all listener functions

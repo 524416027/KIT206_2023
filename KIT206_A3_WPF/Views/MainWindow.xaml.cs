@@ -1,6 +1,7 @@
-﻿using KIT206_A3.Objects;
+﻿using System.Windows;
+
+using KIT206_A3.Objects;
 using KIT206_A3_WPF.Views;
-using System.Windows;
 
 namespace KIT206_A3_WPF
 {
@@ -10,7 +11,7 @@ namespace KIT206_A3_WPF
         {
             InitializeComponent();
 
-            //researcherListView.ResearcherSelected += OnResearcherSelected;
+            //subscribe to listeners when researcher or publication is selected
             researcherListView.OnResearcherSelectListeners += OnResearcherSelected;
             publicationListView.OnPublicationSelectListeners += OnPublicationSelected;
 
@@ -43,6 +44,7 @@ namespace KIT206_A3_WPF
 
         private void OnGeneratePerformanceReportButtonPress(object sender, RoutedEventArgs e)
 		{
+            //create and display the performance report window
             PerformanceReportView performanceReportWindow = new PerformanceReportView();
             performanceReportWindow.Show();
 		}

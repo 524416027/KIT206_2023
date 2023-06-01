@@ -13,10 +13,10 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- First row with title -->
+        <!-- row 1 with title -->
         <Label Grid.Row="0" Content="Pubication Details" FontWeight="Bold" FontSize="16"/>
 
-        <!-- Second row with contents -->
+        <!-- row 2 with contents -->
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -32,6 +32,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
+            <!-- content row 1 of doi label and value -->
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -41,6 +42,7 @@
                 <TextBlock x:Name="tbDoi" TextWrapping="Wrap" Grid.Column="1" Text="doi" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
 
+            <!-- content row 2 of title label and value -->
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -49,6 +51,8 @@
                 <TextBlock Grid.Column="0" Text="Title:" FontWeight="Bold" Margin="4,0,0,0"/>
                 <TextBlock x:Name="tbTitle" TextWrapping="Wrap" Grid.Column="1" Text="title" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
+
+            <!-- content row 3 of authors label and value -->
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -57,6 +61,8 @@
                 <TextBlock Grid.Column="0" Text="Authors:" FontWeight="Bold" Margin="4,0,0,0"/>
                 <TextBlock x:Name="tbAuthors" TextWrapping="Wrap" Grid.Column="1" Text="authors" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
+
+            <!-- content row 4 of publication year label and value -->
             <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -66,6 +72,7 @@
                 <TextBlock x:Name="tbPublicationYear" TextWrapping="Wrap" Grid.Column="1" Text="year" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
 
+            <!-- content row 5 of ranking label and value -->
             <Grid Grid.Row="6">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -74,6 +81,8 @@
                 <TextBlock Grid.Column="0" Text="Ranking:" FontWeight="Bold" Margin="4,0,0,0"/>
                 <TextBlock x:Name="tbRanking" TextWrapping="Wrap" Grid.Column="1" Text="ranking" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
+
+            <!-- content row 6 of type label and value -->
             <Grid Grid.Row="7">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -82,6 +91,8 @@
                 <TextBlock Grid.Column="0" Text="Type:" FontWeight="Bold" Margin="4,0,0,0"/>
                 <TextBlock x:Name="tbType" TextWrapping="Wrap" Grid.Column="1" Text="type" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
+
+            <!-- content row 7 of cite label and value -->
             <Grid Grid.Row="8">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -90,6 +101,8 @@
                 <TextBlock Grid.Column="0" Text="Cite:" FontWeight="Bold" Margin="4,0,0,0"/>
                 <TextBlock x:Name="tbCite" TextWrapping="Wrap" Grid.Column="1" Text="cite" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
+
+            <!-- content row 8 of available date label and value -->
             <Grid Grid.Row="9">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -98,6 +111,8 @@
                 <TextBlock Grid.Column="0" Text="Availability date:" FontWeight="Bold" Margin="4,0,0,0"/>
                 <TextBlock x:Name="tbAvailabilityDate" TextWrapping="Wrap" Grid.Column="1" Text="date" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
+
+            <!-- content row 9 of publication age label and value -->
             <Grid Grid.Row="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>

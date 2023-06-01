@@ -28,31 +28,22 @@ namespace KIT206_A3_WPF.Views
 
         private void populateEntries()
         {
-            // Researcher researcher = _researcherController.LoadResearcherDetails(selectedResearcher);
-            // Assign the publications list to your desired control in the UI
-
             string uriString = researcher.PhotoURL;
 
             // Create a new Uri using the uriString
-            try
-            {
-                Uri imageUri = new Uri(uriString);
+            Uri imageUri = new Uri(uriString);
 
-                // Create a new BitmapImage
-                BitmapImage bitmapImage = new BitmapImage();
-                bitmapImage.BeginInit();
-                bitmapImage.UriSource = imageUri;
-                bitmapImage.EndInit();
-                imgpath.Width = 70;
-                imgpath.Height = 150;
+            // Create a new BitmapImage
+            BitmapImage bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.UriSource = imageUri;
+            bitmapImage.EndInit();
+            imgpath.Width = 70;
+            imgpath.Height = 150;
 
-                imgpath.Source = bitmapImage;
-            }
-            catch (Exception)
-            {
+            imgpath.Source = bitmapImage;
 
-            }
-
+            //assign selected researcher details to textbox for display
             tbName.Text = researcher.FirstName + " " + researcher.LastName;
             tbTitle.Text = researcher.Title;
             tbSchoolUnit.Text = researcher.SchoolUnit;
@@ -65,10 +56,9 @@ namespace KIT206_A3_WPF.Views
 
             tbTenure.Text = researcher.CalculateTenure().ToString();
 
-            
-
             tbPublicationCount.Text = researcher.PublicationCount.ToString();
 
+            //if the selected researcher is Staff
             if(researcher is Staff staff)
 			{
                 //enable previous positions section
@@ -89,6 +79,7 @@ namespace KIT206_A3_WPF.Views
                 tbSupervisorTitle.Visibility = Visibility.Collapsed;
                 tbSupervisor.Visibility = Visibility.Collapsed;
             }
+            //otherwise the selected researcher is Student
             else
 			{
                 //disable previous positions section
@@ -123,10 +114,6 @@ namespace KIT206_A3_WPF.Views
             {
                 populateEntries();
             }
-            else
-            {
-                MessageBox.Show("Something wrong happened");
-            }
         }
 
         public Researcher GetSelectedResearcher()
@@ -146,12 +133,14 @@ namespace KIT206_A3_WPF.Views
 
         private void OnSuperviseeButtonPress(object sender, RoutedEventArgs e)
         {
+            //create and display supervisees window
             SuperviseeListView superviseeListWindow = new SuperviseeListView();
             superviseeListWindow.Show();
         }
 
         private void OnPerformanceButtonPress(object sender, RoutedEventArgs e)
         {
+            //create and display performance detail window
             PerformanceDetailView performanceDetailWindow = new PerformanceDetailView();
             performanceDetailWindow.DisplayPerformanceDetails(ResearcherController.SelectedResearcher);
             performanceDetailWindow.Show();
@@ -159,10 +148,9 @@ namespace KIT206_A3_WPF.Views
 
         private void OnCumulativeCountButtonPress(object sender, RoutedEventArgs e)
         {
+            //create and display cumulative window
             CumulativeCountView cumulativeCountWindow = new CumulativeCountView();
             cumulativeCountWindow.Show();
         }
-
-        private void InvertOrder_Click(object sender, RoutedEventArgs e) { }
     }
 }

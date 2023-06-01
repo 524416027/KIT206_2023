@@ -1,25 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
-using KIT206_A3.Database;
-using KIT206_A3.Objects;
 
-using System.Windows;
+using KIT206_A3.Objects;
+using KIT206_A3.Database;
 
 namespace KIT206_A3.Controllers
 {
+	/* class objects for funding xml */
 	[XmlRoot(ElementName = "Projects")]
 	public class Projects
 	{
 		[XmlElement("Project")]
 		public List<Project> ProjectList { get; set; }
 	}
-
 	public class Project
 	{
 		[XmlElement("Funding")]
@@ -31,19 +27,20 @@ namespace KIT206_A3.Controllers
 		[XmlElement("Researchers")]
 		public List<Researchers> researcherList { get; set; }
 	}
-
 	public class Researchers
 	{
 		[XmlElement("staff_id")]
 		public List<int> staffIdList { get; set; }
 	}
 
+	/* class object for cumulative count */
 	public class CumulativePair
 	{
 		public int Year { get; set; }
 		public int Count { get; set; }
 	}
 
+	/* class object for performance report*/
 	public class PerformancePair
 	{
 		public int Performance { get; set; }
@@ -57,16 +54,20 @@ namespace KIT206_A3.Controllers
 		public static List<Researcher> ResearcherList { get; set; }
 		public static List<Researcher> ResearcherListFiltered { get; set; }
 		public static Researcher SelectedResearcher { get; set; }
-		private static Projects projects;
+		private static Projects projects; //object for funding xml
 
+		/* load basic researcher list */
 		public static List<Researcher> LoadResearcherList()
 		{
+			/* load basic data from database */
 			ResearcherList = DatabaseAdaptor.FetchBasicResearcherList();
 			ResearcherListFiltered = ResearcherList;
 
+			/* process funding xml file */
+			//read xml file as plain text
 			string fundingFileStr = System.IO.File.ReadAllText("../../../Data/Fundings_Rankings.xml");
+			//deserilize plain xml text to C# objects
 			XmlSerializer ser = new XmlSerializer(typeof(Projects));
-
 			using (TextReader reader = new StringReader(fundingFileStr))
 			{
 				projects = new Projects();
@@ -76,8 +77,10 @@ namespace KIT206_A3.Controllers
 			return ResearcherListFiltered;
 		}
 
+		/* load full details for the target researcher by researcher's ID */
 		public static void LoadResearcherDetail(int researcherId)
 		{
+			//search to find target researcher by ID from the list
 			for (int i = 0; i < ResearcherList.Count; i++)
 			{
 				if (researcherId == ResearcherList[i].Id)
@@ -95,8 +98,10 @@ namespace KIT206_A3.Controllers
 						//assign supervisee list for the selected staff
 						(ResearcherList[i] as Staff).Supervisees = LoadSuperviees(ResearcherList[i]);
 
+						/* calculate the total funding received by target this researcher */
 						//funding sum of selected researcher
 						int totalFunding = 0;
+						//locate projects made by this researcher
 						foreach (Project project in projects.ProjectList)
 						{
 							foreach (Researchers researchers in project.researcherList)
@@ -105,11 +110,13 @@ namespace KIT206_A3.Controllers
 								{
 									if (staffId == researcherId)
 									{
+										//add the funding to the sum
 										totalFunding += project.Funding;
 									}
 								}
 							}
 						}
+						//assign the total funding result
 						(ResearcherList[i] as Staff).FundingReceived = totalFunding;
 					}
 
@@ -164,6 +171,7 @@ namespace KIT206_A3.Controllers
 		/* filter researcher list by name */
 		public static List<Researcher> FilterResearcher(string name)
 		{
+			//if text entered into the search box
 			if (name != "")
 			{
 				//filter by name contained either in first or last name
@@ -175,6 +183,7 @@ namespace KIT206_A3.Controllers
 				//store filtered result to display
 				ResearcherListFiltered = new List<Researcher>(filtered);
 			}
+			//if the text box is empty, display defalt list
 			else
 			{
 				ResearcherListFiltered = new List<Researcher>(ResearcherList);
@@ -186,6 +195,7 @@ namespace KIT206_A3.Controllers
 		/* filter researcher list by both emplyment level and name */
 		public static List<Researcher> FilterResearcher(EmplymentLevel level, string name)
 		{
+			//if text entered into the search box
 			if (name != "")
 			{
 				//filter by name contained either in first or last name
@@ -197,6 +207,7 @@ namespace KIT206_A3.Controllers
 				//store filtered result to display
 				ResearcherListFiltered = new List<Researcher>(filtered);
 			}
+			//if the text box is empty, display defalt list
 			else
 			{
 				ResearcherListFiltered = new List<Researcher>(FilterResearcher(level));
@@ -205,15 +216,19 @@ namespace KIT206_A3.Controllers
 			return ResearcherListFiltered;
 		}
 
+		/* search research by ID and return name in a format */
 		public static string FindResearcherName(int id)
 		{
 			string name = "";
+			//find the target researcher by ID from the list
 			for (int i = 0; i < ResearcherList.Count; i++)
 			{
 				if (ResearcherList[i].Id == id)
 				{
+					//combine names to desired format
 					name = ResearcherList[i].FirstName + ", " + ResearcherList[i].LastName + " (" + ResearcherList[i].Title + ")";
 
+					//target found, stop the search
 					i = ResearcherList.Count;
 				}
 			}
@@ -271,11 +286,13 @@ namespace KIT206_A3.Controllers
 			return cumulativeList;
 		}
 
+		/* calculate performance for each staff researcher, group the result in order */
 		public static List<PerformancePair>[] GetPerformanceReport()
 		{
 			List<PerformancePair>[] performanceListGroups = new List<PerformancePair>[4];
 			List<PerformancePair> performanceList = new List<PerformancePair>();
 
+			//initial performance list groups
 			for(int i = 0; i < performanceListGroups.Length; i++)
 			{
 				performanceListGroups[i] = new List<PerformancePair>();
@@ -284,10 +301,13 @@ namespace KIT206_A3.Controllers
 			//load full details for all staffs to calculate performance
 			for(int i = 0; i < ResearcherList.Count; i++)
 			{
+				//only for staff researcher
 				if (ResearcherList[i] is Staff)
 				{
+					//load full detail for this researcher to calculate performance
 					LoadResearcherDetail(ResearcherList[i].Id);
 
+					//generate performance pair to order and group
 					PerformancePair newPerformancePair = new PerformancePair
 					{
 						FirstName = ResearcherList[i].FirstName,
@@ -296,6 +316,7 @@ namespace KIT206_A3.Controllers
 						Performance = (int)((ResearcherList[i] as Staff).CalculatePublicationPerformance() * 100)
 					};
 
+					//add the performance pair to general list for further process
 					performanceList.Add(newPerformancePair);
 				}
 			}
@@ -336,18 +357,20 @@ namespace KIT206_A3.Controllers
 			return performanceListGroups;
 		}
 
+		/* create plain text includes all staff researcher email to copy to clipboard */
 		public static string GetAllResearcherEmail()
 		{
 			string emails = "";
-
 			for(int i = 0; i < ResearcherList.Count; i++)
 			{
 				if(ResearcherList[i] is Staff)
 				{
-					if(i != 0)
+					//add semicolon in front of the email to separate between each emails
+					if (i != 0)
 					{
 						emails += ", ";
 					}
+					//add email
 					emails += ResearcherList[i].Email;
 				}
 			}

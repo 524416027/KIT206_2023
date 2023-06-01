@@ -1,8 +1,9 @@
-﻿using KIT206_A3.Objects;
-using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MySql.Data.MySqlClient;
+
+using KIT206_A3.Objects;
 
 namespace KIT206_A3.Database
 {
@@ -21,7 +22,7 @@ namespace KIT206_A3.Database
             return (T)Enum.Parse(typeof(T), value);
         }
 
-        /* make connection with database */
+        /* establish connection with database */
         public static MySqlConnection GetConnection()
         {
             //connect if not yet
@@ -30,6 +31,7 @@ namespace KIT206_A3.Database
                 string conenctionString = String.Format("Database={0};Data Source={1};User Id={2};Password={3}", _database, _dataSource, _userId, _password);
                 _conn = new MySqlConnection(conenctionString);
             }
+
             return _conn;
         }
 
@@ -222,12 +224,15 @@ namespace KIT206_A3.Database
             return selectedResearcher;
         }
 
+        /* fetch full researcher details helper function */
         public static Researcher CompleteResearcherDetails(Researcher researcher)
         {
             //assign selected researcher full detail back to the researcher list
             return FetchFullResearcherDetails(researcher.Id);
         }
 
+
+        /* fetch basic publication list for selected researcher */
         public static List<Publication> FetchBasicPublicationDetails(Researcher researcher)
         {
             List<Publication> basicPublicationList = new List<Publication>();
@@ -239,6 +244,10 @@ namespace KIT206_A3.Database
             {
                 conn.Open();
 
+                /* select basic details of publication imformation */
+                //doi as unique identifier of the publication
+                //tiitle, year used for display
+                //ranking for researcher performance calculation
                 MySqlCommand cmd = new MySqlCommand(
                     "SELECT publication.doi, publication.title, publication.year, publication.ranking " +
                     "FROM publication " +
@@ -249,8 +258,10 @@ namespace KIT206_A3.Database
                 cmd.Parameters.AddWithValue("id", researcher.Id);
                 rdr = cmd.ExecuteReader();
 
+                //for every result from the database
                 while (rdr.Read())
                 {
+                    //add to the publication list for selected researcher
                     basicPublicationList.Add(
                         new Publication
                         {
@@ -281,6 +292,7 @@ namespace KIT206_A3.Database
             return basicPublicationList;
         }
 
+        /* fetch completed information for slected publication from the database */
         public static Publication CompletePublicationDetails(Publication publication)
         {
             Publication selectedPublication = null;
@@ -292,6 +304,7 @@ namespace KIT206_A3.Database
             {
                 conn.Open();
 
+                //selected the target publication by doi as unique identifier
                 MySqlCommand cmd = new MySqlCommand(
                     "SELECT * FROM publication WHERE doi = ?doi",
                     conn
@@ -299,8 +312,10 @@ namespace KIT206_A3.Database
                 cmd.Parameters.AddWithValue("doi", publication.Doi);
                 rdr = cmd.ExecuteReader();
 
+                //for the result
                 if (rdr.Read())
                 {
+                    //assign all details
                     selectedPublication = new Publication
                     {
                         Doi = publication.Doi,
@@ -331,12 +346,6 @@ namespace KIT206_A3.Database
             }
 
             return selectedPublication;
-        }
-
-        public static int FetchPublicationCounts(DateTime from, DateTime to)
-        {
-            //when display commulative count, display each year publication count
-            return 0;
         }
     }
 }

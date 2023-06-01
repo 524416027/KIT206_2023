@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KIT206_A3.Objects
 {
@@ -36,7 +33,6 @@ namespace KIT206_A3.Objects
         {
             get
             {
-                //return PreviousPositions == null ? null : GetCurrentJob().PositionLevel.ToString();
                 return JobTitleNames[Level];
             }
         }
@@ -46,16 +42,19 @@ namespace KIT206_A3.Objects
         public int PublicationCount { get; set; }
         public List<Publication> PublicationList { get; set; }
 
+        /* calculate tenure of this researcher */
         public double CalculateTenure()
         {
             return DateTime.Now.Year - CommencedInstitution.Year;
         }
 
+        /* calculate q1 percentage of this researcher */
         public double CalculateQ1Percentage()
         {
             //total number of Q1 publication / total number of publication * 100
             int q1Count = 0;
 
+            //count the total Q1 publication
             foreach(Publication pub in PublicationList)
 			{
                 if(pub.Rank == Ranking.Q1)
@@ -67,6 +66,7 @@ namespace KIT206_A3.Objects
             return Math.Round((double)q1Count / PublicationCount * 100, 2);
         }
 
+        /* find the earliest job of this researcher */
         public Position GetEarliestJob()
         {
             DateTime ealiestTime = DateTime.Now;
@@ -85,9 +85,11 @@ namespace KIT206_A3.Objects
                     ealiestPos = pos;
                 }
             }
+
             return ealiestPos;
         }
 
+        /* find the current job of this researcher under taking */
         public Position GetCurrentJob()
         {
             Position currentJob = new Position();
@@ -106,6 +108,7 @@ namespace KIT206_A3.Objects
                     currentJob = pos;
                 }
             }
+
             return currentJob;
         }
     }

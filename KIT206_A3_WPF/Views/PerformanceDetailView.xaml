@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="PerformanceDetailView" Height="450" MinHeight="450" Width="320" MinWidth="320">
 
+    <!-- data resources -->
     <Window.Resources>
         <local:ResearcherDetailsView x:Key="local"/>
         <ObjectDataProvider x:Key="selectedResearcher"
@@ -21,10 +22,10 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- First row with title -->
+        <!-- first row with title -->
         <Label Grid.Row="0" Content="Pubication Details" FontWeight="Bold" FontSize="16"/>
 
-        <!-- Second row with contents -->
+        <!-- second row with contents -->
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -32,7 +33,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="8"/>
+                <RowDefinition Height="8"/> <!-- space to seperater common information -->
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -43,6 +44,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
+            <!-- row 1 of name label and value -->
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -52,6 +54,7 @@
                 <TextBlock x:Name="tbName" TextWrapping="Wrap" Grid.Column="1" Text="name" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
 
+            <!-- row 2 of title label and value -->
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -60,6 +63,8 @@
                 <TextBlock Grid.Column="0" Text="Title:" FontWeight="Bold" Margin="4,0,0,0"/>
                 <TextBlock x:Name="tbTitle" TextWrapping="Wrap" Grid.Column="1" Text="title" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
+
+            <!-- row 3 of school unit label and value -->
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -68,6 +73,8 @@
                 <TextBlock Grid.Column="0" Text="School/Unit:" FontWeight="Bold" Margin="4,0,0,0"/>
                 <TextBlock x:Name="tbSchoolUnit" TextWrapping="Wrap" Grid.Column="1" Text="school unit" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
+
+            <!-- row 4 of campus label and value -->
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -77,6 +84,7 @@
                 <TextBlock x:Name="tbCampus" TextWrapping="Wrap" Grid.Column="1" Text="campus" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
 
+            <!-- row 5 of email label and value -->
             <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -85,6 +93,8 @@
                 <TextBlock Grid.Column="0" Text="Email:" FontWeight="Bold" Margin="4,0,0,0"/>
                 <TextBlock x:Name="tbEmail" TextWrapping="Wrap" Grid.Column="1" Text="email" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
+
+            <!-- row 6 of Q1 percentage label and value -->
             <Grid Grid.Row="6">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -93,6 +103,8 @@
                 <TextBlock Grid.Column="0" Text="Q1 percentage:" FontWeight="Bold" Margin="4,0,0,0"/>
                 <TextBlock x:Name="tbQ1Percentage" TextWrapping="Wrap" Grid.Column="1" Text="n%" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
+
+            <!-- row 7 of 3 year average label and value -->
             <Grid Grid.Row="7">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -101,6 +113,8 @@
                 <TextBlock x:Name="tb3YearAverageTitle" Grid.Column="0" Text="3-Year Average:" FontWeight="Bold" Margin="4,0,0,0"/>
                 <TextBlock x:Name="tb3YearAverage" TextWrapping="Wrap" Grid.Column="1" Text="n%" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
+
+            <!-- row 8 of funding received label and value -->
             <Grid Grid.Row="8">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -109,12 +123,16 @@
                 <TextBlock x:Name="tbFundingReceivedTitle" Grid.Column="0" Text="Funding received:" FontWeight="Bold" Margin="4,0,0,0"/>
                 <TextBlock x:Name="tbFundingReceived" TextWrapping="Wrap" Grid.Column="1" Text="$n" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
+
+            <!-- row 9 and 10 of performance by publication label and value -->
             <Grid Grid.Row="9">
                 <TextBlock x:Name="tbPublicationPerformanceTitle" Grid.Column="0" Text="Performance by publication:" FontWeight="Bold" Margin="4,0,0,0"/>
             </Grid>
             <Grid Grid.Row="10">
                 <TextBlock x:Name="tbPublicationPerformance" TextWrapping="Wrap" Grid.Column="1" Text="n" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
+
+            <!-- row 11 and 12 fo performance by publication label and value -->
             <Grid Grid.Row="11">
                 <TextBlock x:Name="tbFundingPerformanceTitle" Grid.Column="0" Text="Performance by Funding received:" FontWeight="Bold" Margin="4,0,0,0"/>
             </Grid>

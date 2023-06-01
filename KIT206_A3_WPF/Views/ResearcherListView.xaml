@@ -8,6 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="240">
 
+    <!-- data resources -->
     <UserControl.Resources>
         <controller:ResearcherController x:Key="controller"/>
         <ObjectDataProvider x:Key="researcherList"

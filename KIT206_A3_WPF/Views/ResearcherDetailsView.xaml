@@ -14,10 +14,10 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- First row with title -->
+        <!-- row 1 of title -->
         <Label Grid.Row="0" Content="Researcher Details" FontWeight="Bold" FontSize="16"/>
 
-        <!-- Second row with one column -->
+        <!-- row 2 of commen details with photo section -->
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -32,6 +32,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
+                <!-- researcher photo -->
                 <Image Grid.Column="0" x:Name="imgpath" Stretch="Uniform" Source="/Images/placeholder.png" Width="120" Height="160" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
                 <Grid Grid.Column="1">
@@ -47,6 +48,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
+                    <!-- name label and value -->
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -56,6 +58,7 @@
                         <TextBlock x:Name="tbName" Grid.Column="1" Text="researcher names" FontWeight="Normal" Margin="4,0,0,0"/>
                     </Grid>
 
+                    <!-- title label and value -->
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -65,6 +68,7 @@
                         <TextBlock x:Name="tbTitle" Grid.Column="1" Text="researcher title" FontWeight="Normal" Margin="4,0,0,0"/>
                     </Grid>
 
+                    <!-- school/unit label and value  -->
                     <Grid Grid.Row="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -74,6 +78,7 @@
                         <TextBlock x:Name="tbSchoolUnit" Grid.Column="1" Text="school/unit" FontWeight="Normal" Margin="4,0,0,0"/>
                     </Grid>
 
+                    <!-- campus label and value -->
                     <Grid Grid.Row="4">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -83,6 +88,7 @@
                         <TextBlock x:Name="tbCampus" Grid.Column="1" Text="campus" FontWeight="Normal" Margin="4,0,0,0"/>
                     </Grid>
 
+                    <!-- email label and value -->
                     <Grid Grid.Row="6">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -92,6 +98,7 @@
                         <TextBlock x:Name="tbEmail" Grid.Column="1" Text="email" FontWeight="Normal" Margin="4,0,0,0"/>
                     </Grid>
 
+                    <!-- job title label and value -->
                     <Grid Grid.Row="7">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -104,7 +111,7 @@
             </Grid>
         </Grid>
 
-        <!-- Third row with multiple rows -->
+        <!-- row 3 of addtional details section -->
         <Grid Grid.Row  ="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -121,6 +128,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
+            <!-- commenced with institution label and value -->
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -130,6 +138,7 @@
                 <TextBlock x:Name="tbCommencedWithInstitution" Grid.Column="1" Text="dd/mm/yy" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
 
+            <!-- commenced current position label and value -->
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -139,6 +148,7 @@
                 <TextBlock x:Name="tbCommencedCurrentPosition" Grid.Column="1" Text="dd/mm/yy" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
 
+            <!-- tenure label and value -->
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -148,10 +158,11 @@
                 <TextBlock x:Name="tbTenure" Grid.Column="1" Text="n years" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
 
+            <!-- previous position label -->
             <Grid Grid.Row="3">
                 <TextBlock x:Name="tbPreviousPositionTitle" Text="Previous positions:" FontWeight="Bold" Margin="4,0,0,0"/>
             </Grid>
-
+            <!-- previous position list -->
             <Grid Grid.Row="4">
                 <ListView x:Name="previous_position_list" Grid.Column="0" ScrollViewer.VerticalScrollBarVisibility="Auto" Visibility="Visible">
                     <ListView.View>
@@ -164,6 +175,7 @@
                 </ListView>
             </Grid>
 
+            <!-- publication count label and value -->
             <Grid Grid.Row="5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -173,9 +185,12 @@
                 <TextBlock x:Name="tbPublicationCount" Grid.Column="1" Text="publication count" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
 
+            <!-- performance details button -->
             <Button Grid.Row="6" Click="OnPerformanceButtonPress" Content="Performance Details" BorderBrush="Black" BorderThickness="1" Padding="4" HorizontalAlignment="Left" Margin="0,4,0,0" Width="128" />
+            <!-- cumulative count button -->
             <Button Grid.Row="7" Click="OnCumulativeCountButtonPress" Content="Cumulative Count" BorderBrush="Black" BorderThickness="1" Padding="4" HorizontalAlignment="Left" Margin="0,4,0,0" Width="128" />
 
+            <!-- supervision count label and value -->
             <Grid Grid.Row="8">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -185,8 +200,10 @@
                 <TextBlock x:Name="tbSuperviseeCount" Grid.Column="1" Text="superviee count" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
 
+            <!-- supervision details button -->
             <Button x:Name="btnSupervisionDetail" Click="OnSuperviseeButtonPress" Grid.Row="9" Content="Supervision Details" BorderBrush="Black" BorderThickness="1" Padding="4" HorizontalAlignment="Left" Margin="0,4,0,0" Width="128" />
 
+            <!-- degree label and value -->
             <Grid Grid.Row="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -196,6 +213,7 @@
                 <TextBlock x:Name="tbDegree" Grid.Column="1" Text="superviee count" FontWeight="Normal" Margin="4,0,0,0"/>
             </Grid>
 
+            <!-- supervisor label and value -->
             <Grid Grid.Row="11">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>

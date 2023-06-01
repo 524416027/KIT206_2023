@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="SuperviseeListView" Height="450" MinHeight="450" Width="320" MinWidth="320">
 
+    <!-- data resources -->
     <Window.Resources>
         <view:ResearcherDetailsView x:Key="local"/>
         <ObjectDataProvider x:Key="superviseeList"
