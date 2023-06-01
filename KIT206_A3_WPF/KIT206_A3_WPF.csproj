@@ -9,15 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Views\%24M5H7{H~~7%296AE57BU{D%243A.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="MySql.Data" Version="8.0.33" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Views\$M5H7{H~~7)6AE57BU{D$3A.jpg" />
   </ItemGroup>
 
 </Project>

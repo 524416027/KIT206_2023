@@ -1,24 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\61414\\Documents\\KIT206_2023\\KIT206_A3_WPF\\KIT206_A3_WPF.csproj": {}
+    "E:\\OneDrive\\University Study\\2023 Sem 1\\KIT206_2023_Sem1_Software Design and Development\\Aassignments\\Assignment 3_Software Implementation\\KIT206_A3_WPF\\KIT206_A3_WPF\\KIT206_A3_WPF.csproj": {}
   },
   "projects": {
-    "C:\\Users\\61414\\Documents\\KIT206_2023\\KIT206_A3_WPF\\KIT206_A3_WPF.csproj": {
+    "E:\\OneDrive\\University Study\\2023 Sem 1\\KIT206_2023_Sem1_Software Design and Development\\Aassignments\\Assignment 3_Software Implementation\\KIT206_A3_WPF\\KIT206_A3_WPF\\KIT206_A3_WPF.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\61414\\Documents\\KIT206_2023\\KIT206_A3_WPF\\KIT206_A3_WPF.csproj",
+        "projectUniqueName": "E:\\OneDrive\\University Study\\2023 Sem 1\\KIT206_2023_Sem1_Software Design and Development\\Aassignments\\Assignment 3_Software Implementation\\KIT206_A3_WPF\\KIT206_A3_WPF\\KIT206_A3_WPF.csproj",
         "projectName": "KIT206_A3_WPF",
-        "projectPath": "C:\\Users\\61414\\Documents\\KIT206_2023\\KIT206_A3_WPF\\KIT206_A3_WPF.csproj",
-        "packagesPath": "C:\\Users\\61414\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\61414\\Documents\\KIT206_2023\\KIT206_A3_WPF\\obj\\",
+        "projectPath": "E:\\OneDrive\\University Study\\2023 Sem 1\\KIT206_2023_Sem1_Software Design and Development\\Aassignments\\Assignment 3_Software Implementation\\KIT206_A3_WPF\\KIT206_A3_WPF\\KIT206_A3_WPF.csproj",
+        "packagesPath": "C:\\Users\\sun52\\.nuget\\packages\\",
+        "outputPath": "E:\\OneDrive\\University Study\\2023 Sem 1\\KIT206_2023_Sem1_Software Design and Development\\Aassignments\\Assignment 3_Software Implementation\\KIT206_A3_WPF\\KIT206_A3_WPF\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\61414\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\sun52\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0-windows"
+          "net6.0-windows7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -51,8 +57,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -64,7 +69,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.116\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,0 +1,10 @@
+is_global = true
+build_property.TargetFramework = net6.0-windows
+build_property.TargetPlatformMinVersion = 7.0
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = KIT206_A3_WPF_nkugnfhi_wpftmp
+build_property.ProjectDir = E:\OneDrive\University Study\2023 Sem 1\KIT206_2023_Sem1_Software Design and Development\Aassignments\Assignment 3_Software Implementation\KIT206_A3_WPF\KIT206_A3_WPF\
