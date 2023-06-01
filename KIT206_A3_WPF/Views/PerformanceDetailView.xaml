@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
 
         <!-- first row with title -->
-        <Label Grid.Row="0" Content="Pubication Details" FontWeight="Bold" FontSize="16"/>
+        <Label Grid.Row="0" Content="Performance Details" FontWeight="Bold" FontSize="16"/>
 
         <!-- second row with contents -->
         <Grid Grid.Row="1">
